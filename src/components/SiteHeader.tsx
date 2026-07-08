@@ -69,7 +69,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           <Link
             to="/booking"
             className={[
-              "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.7rem] font-medium tracking-[0.22em] uppercase transition-all",
+              "inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.68rem] font-medium tracking-[0.22em] uppercase whitespace-nowrap transition-all",
               solid
                 ? "bg-ink text-white hover:bg-gold hover:text-ink"
                 : "border border-white/70 text-white hover:bg-white hover:text-ink",
