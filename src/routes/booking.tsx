@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
-import { addDays, format, isSameDay, startOfDay } from "date-fns";
+import { addDays, format, startOfDay } from "date-fns";
 import { Reveal } from "@/components/Reveal";
 import { Calendar as CalendarIcon, Clock, MapPin, Check, Loader2 } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
@@ -78,7 +78,7 @@ function Booking() {
   const slots = availability.data?.slots ?? [];
 
   // reset slot when inputs change
-  useMemo(() => { setSlot(null); }, [dateKey, duration, location]);
+  useEffect(() => { setSlot(null); }, [dateKey, duration, location]);
 
   const canSubmit = !!slot && form.name.trim().length >= 2 && /.+@.+\..+/.test(form.email);
 
