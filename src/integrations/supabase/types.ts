@@ -21,10 +21,12 @@ export type Database = {
           client_phone: string | null
           coach_response: string | null
           created_at: string
+          duration_minutes: number
           ends_at: string
           google_event_id: string | null
           google_event_link: string | null
           id: string
+          location: string
           notes: string | null
           service: string
           starts_at: string
@@ -37,10 +39,12 @@ export type Database = {
           client_phone?: string | null
           coach_response?: string | null
           created_at?: string
+          duration_minutes?: number
           ends_at: string
           google_event_id?: string | null
           google_event_link?: string | null
           id?: string
+          location?: string
           notes?: string | null
           service: string
           starts_at: string
@@ -53,10 +57,12 @@ export type Database = {
           client_phone?: string | null
           coach_response?: string | null
           created_at?: string
+          duration_minutes?: number
           ends_at?: string
           google_event_id?: string | null
           google_event_link?: string | null
           id?: string
+          location?: string
           notes?: string | null
           service?: string
           starts_at?: string
