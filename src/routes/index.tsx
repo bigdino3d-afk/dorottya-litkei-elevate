@@ -95,7 +95,7 @@ function Home() {
         <div className="py-6 flex whitespace-nowrap animate-marquee">
           {Array.from({ length: 2 }).map((_, i) => (
             <div key={i} className="flex items-center gap-16 pr-16 shrink-0">
-              {["Six-Time Hungarian Champion", "Coach of the Year 2024", "IPSF Certified", "13+ Years Experience", "International Workshops", "Competition Judge"].map((t) => (
+              {["Six-Time Hungarian Champion", "Coach of the Year 2024", "IPSF and POSA Compatible", "13+ Years Experience", "International Workshops", "Competition Judge"].map((t) => (
                 <span key={t + i} className="flex items-center gap-4 eyebrow text-charcoal">
                   {t} <span className="h-1 w-1 rounded-full bg-gold" />
                 </span>
