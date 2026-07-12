@@ -144,7 +144,7 @@ function About() {
         <div className="relative z-10 h-full container-luxe flex flex-col justify-end pb-16 md:pb-24 text-white">
           <Reveal className="max-w-2xl">
             <h2 className="font-serif text-white text-[clamp(2rem,4.5vw,4rem)] leading-[1.05]">
-              Train with a champion. <br />Learn from a <em className="text-gold not-italic">teacher</em>.
+              Train like a warrior. <br />Learn from a <em className="text-gold not-italic">champion</em>.
             </h2>
             <div className="mt-10 flex gap-4">
               <Link to="/booking" className="btn-luxe btn-luxe-hover" style={{ background: "var(--gold)", color: "var(--ink)", borderColor: "var(--gold)" }}>
