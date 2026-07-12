@@ -64,27 +64,18 @@ function About() {
         <div className="grid gap-16 lg:grid-cols-[1fr_1.3fr]">
           <Reveal>
             <p className="eyebrow">The Story</p>
-            <h2 className="mt-6 font-serif text-4xl md:text-5xl leading-tight">Thirteen years, one obsession.</h2>
+            <h2 className="mt-6 font-serif text-4xl md:text-5xl leading-tight">One life, one obsession.</h2>
           </Reveal>
           <Reveal delay={150} className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p>
-              Dorottya first stepped onto a pole in Budapest in 2011. Within four
-              years she was standing on the top step of the Hungarian
-              championship podium — the beginning of an unbroken decade at the
-              elite level.
+              I started pole dancing in 2014. After six months, I became the
+              Hungarian Amateur Champion. Within less than a year, I started
+              teaching. I trained day and night. I didn't have a coach for 10
+              years.
             </p>
             <p>
-              Six national titles, international competitions, and thousands of
-              hours in the studio taught her something most coaches never
-              articulate: the difference between a good athlete and a great one
-              is almost entirely invisible from the outside. It lives in the
-              hands, the timing, the breath.
-            </p>
-            <p>
-              That invisible layer is what she teaches. Whether you're a
-              beginner or a national competitor, her sessions are built on the
-              same three principles: safety, biomechanical precision, and
-              long-term progression.
+              That was the point when I wanted to become the kind of coach I
+              would have wanted for myself.
             </p>
           </Reveal>
         </div>
