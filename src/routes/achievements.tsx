@@ -416,77 +416,73 @@ const STUDENTS: Student[] = [
 type FlatResult = Result & { year: string };
 
 function flatten(years: Year[]): FlatResult[] {
-  return years.flatMap((y) => y.items.map((r) => ({ ...r, year: y.year })));
+  return years
+    .flatMap((y) => y.items.map((r) => ({ ...r, year: y.year })))
+    .sort((a, b) => Number(a.year) - Number(b.year));
 }
 
-function placeRank(place: string) {
+function placeAccent(place: string) {
   const n = parseInt(place, 10);
-  if (!Number.isFinite(n)) return 99;
-  return n;
+  if (n === 1) return "text-gold";
+  if (n === 2 || n === 3) return "text-foreground";
+  return "text-muted-foreground";
 }
 
-function groupByPlace(results: FlatResult[]) {
-  const groups: { label: string; tone: string; items: FlatResult[] }[] = [
-    { label: "Gold", tone: "text-gold", items: [] },
-    { label: "Silver", tone: "text-foreground", items: [] },
-    { label: "Bronze", tone: "text-foreground", items: [] },
-    { label: "Finalist", tone: "text-muted-foreground", items: [] },
-  ];
-  for (const r of results) {
-    const n = placeRank(r.place);
-    if (n === 1) groups[0].items.push(r);
-    else if (n === 2) groups[1].items.push(r);
-    else if (n === 3) groups[2].items.push(r);
-    else groups[3].items.push(r);
-  }
-  return groups.filter((g) => g.items.length);
-}
-
-function ResultLine({ r, tone }: { r: FlatResult; tone: string }) {
+function ResultLine({ r }: { r: FlatResult }) {
   return (
-    <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-baseline gap-4 border-t border-border py-4">
-      <p className={`font-serif text-2xl md:text-3xl tabular-nums ${tone}`}>{r.place}</p>
-      <div className="min-w-0">
-        <p className="font-serif text-lg leading-snug">{r.event}</p>
-        {r.category && (
-          <p className="mt-1 text-xs tracking-[0.22em] uppercase text-muted-foreground">
-            {r.category}
-          </p>
-        )}
-      </div>
-      <p className="shrink-0 text-xs tracking-[0.2em] uppercase text-muted-foreground tabular-nums">
+    <li className="grid grid-cols-[3.5rem_1fr_auto] items-baseline gap-4 md:gap-6 border-t border-border py-3">
+      <span className="font-serif text-base md:text-lg text-muted-foreground tabular-nums">
         {r.year}
-      </p>
-    </div>
+      </span>
+      <span className="min-w-0">
+        <span className="font-serif text-base md:text-lg leading-snug">{r.event}</span>
+        {r.category && (
+          <span className="ml-2 text-[0.7rem] tracking-[0.2em] uppercase text-muted-foreground">
+            · {r.category}
+          </span>
+        )}
+      </span>
+      <span className={`shrink-0 font-serif text-lg md:text-xl tabular-nums ${placeAccent(r.place)}`}>
+        {r.place}
+      </span>
+    </li>
   );
 }
 
-function ResultsByPlace({ results }: { results: FlatResult[] }) {
-  const groups = groupByPlace(results);
+function ResultList({ results }: { results: FlatResult[] }) {
   return (
-    <div className="space-y-14 md:space-y-16">
-      {groups.map((g) => (
-        <div key={g.label} className="grid gap-6 md:grid-cols-[10rem_1fr] md:gap-12">
-          <div className="md:sticky md:top-32 self-start">
-            <p className={`font-serif text-3xl md:text-4xl ${g.tone}`}>{g.label}</p>
-            <p className="mt-1 text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              {g.items.length} {g.items.length === 1 ? "title" : "titles"}
-            </p>
-          </div>
-          <div>
-            {g.items.map((r, i) => (
-              <ResultLine key={i} r={r} tone={g.tone} />
-            ))}
-          </div>
-        </div>
+    <ul className="border-b border-border">
+      {results.map((r, i) => (
+        <ResultLine key={i} r={r} />
       ))}
+    </ul>
+  );
+}
+
+function PersonBlock({
+  name,
+  division,
+  results,
+}: {
+  name: string;
+  division?: string;
+  results: FlatResult[];
+}) {
+  return (
+    <div>
+      <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-foreground/40 pb-3 mb-2">
+        <h3 className="font-serif text-2xl md:text-3xl leading-tight">{name}</h3>
+        {division && (
+          <p className="font-serif italic text-lg md:text-xl text-gold">{division}</p>
+        )}
+      </div>
+      <ResultList results={results} />
     </div>
   );
 }
 
 function Achievements() {
   const personalFlat = flatten(PERSONAL);
-  const personalTotals = groupByPlace(personalFlat);
   const studentsByDivision = STUDENTS.reduce<Record<string, Student[]>>((acc, s) => {
     (acc[s.division] ||= []).push(s);
     return acc;
@@ -503,35 +499,24 @@ function Achievements() {
               A record built on the <em className="text-gold not-italic font-medium">podium</em>.
             </h1>
             <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Every title, category and athlete — personal results and the
-              podiums earned by the students I've coached across Hungarian,
-              European and World championships.
+              Personal results and the podiums earned by the students I've
+              coached across Hungarian, European and World championships.
             </p>
-            <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
-              {personalTotals.map((g) => (
-                <div key={g.label}>
-                  <p className={`font-serif text-4xl md:text-5xl ${g.tone}`}>{g.items.length}</p>
-                  <p className="mt-2 text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                    {g.label}
-                  </p>
-                </div>
-              ))}
-            </div>
           </Reveal>
         </div>
       </section>
 
-      <section className="container-luxe py-24 md:py-32">
-        <Reveal className="max-w-2xl mb-16 md:mb-20">
+      <section className="container-luxe py-20 md:py-28">
+        <Reveal className="max-w-2xl mb-12 md:mb-16">
           <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Personal Results</p>
-          <h2 className="mt-6 font-serif text-4xl md:text-5xl">Titles &amp; podiums.</h2>
+          <h2 className="mt-6 font-serif text-4xl md:text-5xl">Competition record.</h2>
         </Reveal>
         <Reveal>
-          <ResultsByPlace results={personalFlat} />
+          <PersonBlock name="Dorottya Litkei" division="Elite" results={personalFlat} />
         </Reveal>
       </section>
 
-      <section className="relative py-24 md:py-36 bg-ink text-white overflow-hidden">
+      <section className="relative py-24 md:py-32 bg-ink text-white overflow-hidden">
         <img src={stage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20" loading="lazy" />
         <div className="relative container-luxe">
           <Reveal className="max-w-2xl">
@@ -548,34 +533,26 @@ function Achievements() {
         </div>
       </section>
 
-      <section className="container-luxe py-24 md:py-32 space-y-24 md:space-y-32">
+      <section className="container-luxe py-20 md:py-28 space-y-20 md:space-y-24">
         {divisions.map((division) => (
           <Reveal key={division}>
             <div>
-              <div className="flex items-baseline justify-between border-b border-border pb-6 mb-12">
+              <div className="flex items-baseline justify-between mb-10">
                 <p className="eyebrow text-gold">{division}</p>
                 <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
                   {studentsByDivision[division].length}{" "}
                   {studentsByDivision[division].length === 1 ? "athlete" : "athletes"}
                 </p>
               </div>
-              <div className="space-y-20 md:space-y-24">
-                {studentsByDivision[division].map((s) => {
-                  const flat = flatten(s.years);
-                  return (
-                    <div key={s.name} className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:gap-20">
-                      <div className="lg:sticky lg:top-32 self-start">
-                        <h3 className="font-serif text-3xl md:text-4xl leading-tight">
-                          {s.name}
-                        </h3>
-                        <p className="mt-3 text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                          {flat.length} results
-                        </p>
-                      </div>
-                      <ResultsByPlace results={flat} />
-                    </div>
-                  );
-                })}
+              <div className="space-y-14 md:space-y-16">
+                {studentsByDivision[division].map((s) => (
+                  <PersonBlock
+                    key={s.name}
+                    name={s.name}
+                    division={s.division}
+                    results={flatten(s.years)}
+                  />
+                ))}
               </div>
             </div>
           </Reveal>
@@ -597,4 +574,5 @@ function Achievements() {
     </>
   );
 }
+
 
