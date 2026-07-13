@@ -68,10 +68,20 @@ function About() {
           </Reveal>
           <Reveal delay={150} className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p>
-              I began pole in 2014. Six months later, I was Hungarian Amateur
-              Champion. Within a year, I was teaching. For a decade, I trained
-              day and night — without a coach. That absence became my compass:
-              I set out to become the coach I never had.
+              I began pole in 2014. Within months I was on the podium of the
+              Hungarian Championship. Nine months in, I was already teaching.
+              For a decade I trained day and night — without a coach. That
+              absence became my compass: I set out to become the coach I
+              never had.
+            </p>
+            <p>
+              Since 2014 I've competed every year — amateur, pro, then elite.
+              Two IPSF Pole Sport medals in my first three seasons.
+              <em className="text-gold not-italic"> European Pole Sport Champion in 2016</em>.
+              Repeat Hungarian Champion across Pole Sport and Pole Art.
+              PoleArt Hungary winner. Finalist at POSA European and World
+              Championships from 2020 through 2025. A record built on the
+              podium, not on the sidelines.
             </p>
             <p>
               Movement has shaped me since I was fourteen, when Latin dance
@@ -80,10 +90,12 @@ function About() {
               spent lifting other people.
             </p>
             <p>
-              From nine to sixty-one. From first-timers to national champions.
-              Women, men, hobbyists, competitors. Thousands of hours on the
-              floor. Hundreds of students. Hundreds of results on national and
-              international stages. In <em className="text-gold not-italic">2024, I was named Coach of the Year</em>.
+              From nine years old to sixty-one. From first-timers to national
+              champions. My athletes have taken gold at MALESZ Hungarian
+              Championships, the POSA European Championship, and the POSA
+              Pole Art World Championship — across Junior, Senior and
+              Masters 50+. Hundreds of students. Hundreds of results on
+              national and international stages. In <em className="text-gold not-italic">2024, I was named Coach of the Year</em>.
             </p>
             <p>
               What you receive here is attention unlike any you've had before.
@@ -92,6 +104,7 @@ function About() {
               choreography that fits <em className="text-gold not-italic">you</em>, not a template. And whatever you
               want to learn, I'll teach you.
             </p>
+
           </Reveal>
         </div>
       </section>
