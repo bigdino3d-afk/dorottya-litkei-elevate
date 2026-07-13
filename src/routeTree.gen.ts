@@ -15,6 +15,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as MediaRouteImport } from './routes/media'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as CookiesRouteImport } from './routes/cookies'
@@ -53,6 +54,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaRoute = MediaRouteImport.update({
+  id: '/media',
+  path: '/media',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/cookies': typeof CookiesRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/cookies': typeof CookiesRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/cookies': typeof CookiesRoute
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
+  '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
   '/shop': typeof ShopRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/cookies'
     | '/faq'
     | '/gallery'
+    | '/media'
     | '/privacy'
     | '/services'
     | '/shop'
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/cookies'
     | '/faq'
     | '/gallery'
+    | '/media'
     | '/privacy'
     | '/services'
     | '/shop'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/cookies'
     | '/faq'
     | '/gallery'
+    | '/media'
     | '/privacy'
     | '/services'
     | '/shop'
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   CookiesRoute: typeof CookiesRoute
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
+  MediaRoute: typeof MediaRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
   ShopRoute: typeof ShopRoute
@@ -267,6 +280,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media': {
+      id: '/media'
+      path: '/media'
+      fullPath: '/media'
+      preLoaderRoute: typeof MediaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -345,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   CookiesRoute: CookiesRoute,
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
+  MediaRoute: MediaRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
   ShopRoute: ShopRoute,
