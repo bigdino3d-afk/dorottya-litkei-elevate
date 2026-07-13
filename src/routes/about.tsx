@@ -25,7 +25,9 @@ const TIMELINE = [
   { year: "2020", title: "Elite Podiums", desc: "Repeat Hungarian Champion across Pole Sport and Pole Art in the Elite division." },
   { year: "2023", title: "Coaching Breakthrough", desc: "Her athletes take gold at MALESZ Hungarian Championships and the POSA Pole Art World Championship in Barcelona." },
   { year: "2024", title: "Coach of the Year", desc: "Named Coach of the Year. Students win POSA European titles and world medals from Junior to Masters 50+." },
+  { year: "2026", title: "Cyprus", desc: "Relocates to Cyprus to take pole sports on the island to the next level." },
 ];
+
 
 
 const ACHIEVEMENTS = [
