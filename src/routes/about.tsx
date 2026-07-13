@@ -19,13 +19,14 @@ export const Route = createFileRoute("/about")({
 });
 
 const TIMELINE = [
-  { year: "2011", title: "First Pole", desc: "Discovers pole sport in Budapest and begins daily training under Hungary's top coaches." },
-  { year: "2015", title: "First National Title", desc: "Wins her first Hungarian Championship in the elite division." },
-  { year: "2018", title: "International Stage", desc: "Represents Hungary at IPSF World Championships. Begins coaching full-time." },
-  { year: "2020", title: "Studio Founded", desc: "Opens her private studio, focused on small-group and 1:1 coaching." },
-  { year: "2022", title: "Sixth National Title", desc: "Becomes six-time Hungarian Champion — an unmatched record in her category." },
-  { year: "2024", title: "Coach of the Year", desc: "Named Coach of the Year 2024 by the national federation. Relocates studio to Cyprus." },
+  { year: "2014", title: "First Pole", desc: "Discovers pole sport in Budapest. Podiums at the Hungarian Championship in her first year." },
+  { year: "2015", title: "Begins Coaching", desc: "After just nine months of training, starts teaching alongside competing." },
+  { year: "2016", title: "European Champion", desc: "Wins the European Pole Sport Championship and takes PoleArt Hungary gold." },
+  { year: "2020", title: "Elite Podiums", desc: "Repeat Hungarian Champion across Pole Sport and Pole Art in the Elite division." },
+  { year: "2023", title: "Coaching Breakthrough", desc: "Her athletes take gold at MALESZ Hungarian Championships and the POSA Pole Art World Championship in Barcelona." },
+  { year: "2024", title: "Coach of the Year", desc: "Named Coach of the Year. Students win POSA European titles and world medals from Junior to Masters 50+." },
 ];
+
 
 const ACHIEVEMENTS = [
   "6× Hungarian Champion — Elite Category",
