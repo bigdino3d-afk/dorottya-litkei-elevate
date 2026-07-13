@@ -68,14 +68,29 @@ function About() {
           </Reveal>
           <Reveal delay={150} className="space-y-6 text-lg text-muted-foreground leading-relaxed">
             <p>
-              I started pole dancing in 2014. After six months, I became the
-              Hungarian Amateur Champion. Within less than a year, I started
-              teaching. I trained day and night. I didn't have a coach for 10
-              years.
+              I began pole in 2014. Six months later, I was Hungarian Amateur
+              Champion. Within a year, I was teaching. For a decade, I trained
+              day and night — without a coach. That absence became my compass:
+              I set out to become the coach I never had.
             </p>
             <p>
-              That was the point when I wanted to become the kind of coach I
-              would have wanted for myself.
+              Movement has shaped me since I was fourteen, when Latin dance
+              first pulled me in. By eighteen I was teaching, and I've never
+              stopped. This isn't a career — it's a vocation. A way of life
+              spent lifting other people.
+            </p>
+            <p>
+              From nine to sixty-one. From first-timers to national champions.
+              Women, men, hobbyists, competitors. Thousands of hours on the
+              floor. Hundreds of students. Hundreds of results on national and
+              international stages. In <em className="text-gold not-italic">2024, I was named Coach of the Year</em>.
+            </p>
+            <p>
+              What you receive here is attention unlike any you've had before.
+              I read your level and draw out what's already in you. I build a
+              space that's safe — mentally and physically. I design
+              choreography that fits <em className="text-gold not-italic">you</em>, not a template. And whatever you
+              want to learn, I'll teach you.
             </p>
           </Reveal>
         </div>
