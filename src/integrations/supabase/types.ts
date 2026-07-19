@@ -95,6 +95,33 @@ export type Database = {
         }
         Relationships: []
       }
+      testimonials: {
+        Row: {
+          created_at: string
+          id: string
+          location: string | null
+          name: string
+          quote: string
+          rating: number
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          location?: string | null
+          name: string
+          quote: string
+          rating?: number
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          location?: string | null
+          name?: string
+          quote?: string
+          rating?: number
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
