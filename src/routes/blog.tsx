@@ -1,9 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Reveal } from "@/components/Reveal";
-import studio from "@/assets/studio.jpg";
-import grip from "@/assets/grip.jpg";
-import stage from "@/assets/stage.jpg";
-import g4 from "@/assets/g4.jpg";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/blog")({
   head: () => ({
@@ -18,16 +16,36 @@ export const Route = createFileRoute("/blog")({
   component: Blog,
 });
 
-const POSTS = [
-  { title: "The invisible half of every pole trick", category: "Technique", read: "6 min read", img: grip },
-  { title: "How I train grip strength through a competition cycle", category: "Training", read: "8 min read", img: studio },
-  { title: "Mobility work you should be doing before every session", category: "Mobility", read: "5 min read", img: g4 },
-  { title: "The mental preparation ritual behind six national titles", category: "Mindset", read: "10 min read", img: stage },
-];
-
-const CATEGORIES = ["Pole Sport", "Training", "Mobility", "Nutrition", "Recovery", "Mindset", "Competitions", "Lifestyle"];
+type Post = {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string | null;
+  cover_image_url: string | null;
+  category: string | null;
+  published_at: string | null;
+};
 
 function Blog() {
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [active, setActive] = useState<string | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("posts")
+        .select("id, slug, title, excerpt, cover_image_url, category, published_at")
+        .eq("published", true)
+        .order("published_at", { ascending: false });
+      const list = (data ?? []) as Post[];
+      setPosts(list);
+      setCategories(Array.from(new Set(list.map((p) => p.category).filter(Boolean) as string[])));
+    })();
+  }, []);
+
+  const filtered = active ? (posts ?? []).filter((p) => p.category === active) : posts ?? [];
+
   return (
     <>
       <section className="pt-32 md:pt-40 pb-16 bg-cream">
@@ -45,36 +63,84 @@ function Blog() {
         </div>
       </section>
 
-      <section className="container-luxe py-16 border-b border-border">
-        <div className="flex flex-wrap gap-2 md:gap-3">
-          {CATEGORIES.map((c) => (
-            <button key={c} className="rounded-full border border-border px-5 py-2 text-xs tracking-[0.2em] uppercase hover:border-gold hover:text-gold transition-colors">
-              {c}
+      {categories.length > 0 && (
+        <section className="container-luxe py-10 border-b border-border">
+          <div className="flex flex-wrap gap-2 md:gap-3">
+            <button
+              onClick={() => setActive(null)}
+              className={`rounded-full border px-5 py-2 text-xs tracking-[0.2em] uppercase transition-colors ${
+                active === null ? "border-gold text-gold" : "border-border hover:border-gold hover:text-gold"
+              }`}
+            >
+              All
             </button>
-          ))}
-        </div>
-      </section>
+            {categories.map((c) => (
+              <button
+                key={c}
+                onClick={() => setActive(c)}
+                className={`rounded-full border px-5 py-2 text-xs tracking-[0.2em] uppercase transition-colors ${
+                  active === c ? "border-gold text-gold" : "border-border hover:border-gold hover:text-gold"
+                }`}
+              >
+                {c}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="container-luxe py-20">
-        <div className="grid gap-14 md:grid-cols-2 lg:gap-20">
-          {POSTS.map((p, i) => (
-            <Reveal key={p.title} delay={(i % 2) * 100}>
-              <Link to="/blog" className="group block">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img src={p.img} alt={p.title} className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" loading="lazy" />
-                </div>
-                <div className="mt-6 flex items-center gap-4 eyebrow text-muted-foreground">
-                  <span className="text-gold">{p.category}</span>
-                  <span className="h-1 w-1 rounded-full bg-border" />
-                  <span>{p.read}</span>
-                </div>
-                <h2 className="mt-4 font-serif text-3xl md:text-4xl leading-tight group-hover:text-gold transition-colors">
-                  {p.title}
-                </h2>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        {posts === null ? (
+          <p className="text-center text-muted-foreground">Loading…</p>
+        ) : filtered.length === 0 ? (
+          <div className="text-center max-w-md mx-auto py-20">
+            <p className="eyebrow text-muted-foreground">Coming soon</p>
+            <h2 className="mt-4 font-serif text-3xl">The journal opens shortly.</h2>
+            <p className="mt-4 text-muted-foreground">
+              The first articles are in preparation. Check back soon.
+            </p>
+          </div>
+        ) : (
+          <div className="grid gap-14 md:grid-cols-2 lg:gap-20">
+            {filtered.map((p, i) => (
+              <Reveal key={p.id} delay={(i % 2) * 100}>
+                <Link to="/blog/$slug" params={{ slug: p.slug }} className="group block">
+                  {p.cover_image_url && (
+                    <div className="aspect-[4/5] overflow-hidden bg-cream">
+                      <img
+                        src={p.cover_image_url}
+                        alt={p.title}
+                        className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  )}
+                  <div className="mt-6 flex items-center gap-4 eyebrow text-muted-foreground">
+                    {p.category && <span className="text-gold">{p.category}</span>}
+                    {p.category && p.published_at && <span className="h-1 w-1 rounded-full bg-border" />}
+                    {p.published_at && (
+                      <span>
+                        {new Date(p.published_at).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="mt-4 font-serif text-3xl md:text-4xl leading-tight group-hover:text-gold transition-colors">
+                    {p.title}
+                  </h2>
+                  {p.excerpt && (
+                    <p className="mt-4 text-muted-foreground leading-relaxed line-clamp-3">
+                      {p.excerpt}
+                    </p>
+                  )}
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="bg-ink text-white">
