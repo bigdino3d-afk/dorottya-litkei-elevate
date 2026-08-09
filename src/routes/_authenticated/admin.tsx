@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Pencil, Plus, Trash2, LogOut, Eye } from "lucide-react";
@@ -136,7 +136,12 @@ function AdminPage() {
           <div>
             <p className="eyebrow text-muted-foreground">Admin</p>
             <h1 className="mt-2 font-serif text-4xl">Journal</h1>
+            <div className="mt-3 flex gap-4 eyebrow">
+              <span className="text-gold">Journal</span>
+              <Link to="/manage-projects" className="text-muted-foreground hover:text-gold">Projects</Link>
+            </div>
           </div>
+
           <div className="flex items-center gap-3">
             {!editing && (
               <button

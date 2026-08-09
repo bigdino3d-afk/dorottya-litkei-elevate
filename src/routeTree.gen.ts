@@ -13,6 +13,7 @@ import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as GalleryRouteImport } from './routes/gallery'
@@ -27,6 +28,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const TestimonialsRoute = TestimonialsRouteImport.update({
@@ -47,6 +49,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsRoute = ProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -118,6 +125,12 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const AuthenticatedManageProjectsRoute =
+  AuthenticatedManageProjectsRouteImport.update({
+    id: '/manage-projects',
+    path: '/manage-projects',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -137,11 +150,13 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesByTo {
@@ -157,11 +172,13 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesById {
@@ -179,11 +196,13 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
+  '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRouteTypes {
@@ -201,11 +220,13 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/media'
     | '/privacy'
+    | '/projects'
     | '/services'
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
     | '/admin'
+    | '/manage-projects'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -221,11 +242,13 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/media'
     | '/privacy'
+    | '/projects'
     | '/services'
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
     | '/admin'
+    | '/manage-projects'
     | '/blog/$slug'
   id:
     | '__root__'
@@ -242,11 +265,13 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/media'
     | '/privacy'
+    | '/projects'
     | '/services'
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
     | '/_authenticated/admin'
+    | '/_authenticated/manage-projects'
     | '/blog/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -264,6 +289,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   MediaRoute: typeof MediaRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
@@ -298,6 +324,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects': {
+      id: '/projects'
+      path: '/projects'
+      fullPath: '/projects'
+      preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -398,6 +431,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/_authenticated/manage-projects': {
+      id: '/_authenticated/manage-projects'
+      path: '/manage-projects'
+      fullPath: '/manage-projects'
+      preLoaderRoute: typeof AuthenticatedManageProjectsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -410,10 +450,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -443,6 +485,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   MediaRoute: MediaRoute,
   PrivacyRoute: PrivacyRoute,
+  ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
