@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -25,7 +26,9 @@ function NotFoundComponent() {
         <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
           The page you're looking for has drifted off the mat. Let's guide you back.
         </p>
-        <Link to="/" className="btn-luxe btn-luxe-hover mt-10">Return home</Link>
+        <Link to="/" className="btn-luxe btn-luxe-hover mt-10">
+          Return home
+        </Link>
       </div>
     </div>
   );
@@ -46,12 +49,19 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
         <p className="mt-4 text-sm text-muted-foreground">Try again or head back home.</p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="btn-luxe btn-luxe-hover"
           >
             Try again
           </button>
-          <a href="/" className="btn-luxe btn-luxe-hover" style={{ background: "transparent", color: "var(--ink)" }}>
+          <a
+            href="/"
+            className="btn-luxe btn-luxe-hover"
+            style={{ background: "transparent", color: "var(--ink)" }}
+          >
             Go home
           </a>
         </div>
@@ -77,7 +87,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Dorottya Litkei — Elite Pole Sport Coach" },
       {
         property: "og:description",
-        content: "Elite Pole Sport coaching in Cyprus. Private lessons, workshops, competition preparation.",
+        content:
+          "Elite Pole Sport coaching in Cyprus. Private lessons, workshops, competition preparation.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -115,6 +126,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <Analytics />
         <Scripts />
       </body>
     </html>

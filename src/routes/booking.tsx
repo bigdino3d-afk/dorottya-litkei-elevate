@@ -13,7 +13,11 @@ export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
       { title: "Book a Lesson — Dorottya Litkei" },
-      { name: "description", content: "Book a private pole sport lesson, workshop or consultation with Dorottya Litkei in Cyprus. Real-time availability." },
+      {
+        name: "description",
+        content:
+          "Book a private pole sport lesson, workshop or consultation with Dorottya Litkei in Cyprus. Real-time availability.",
+      },
       { property: "og:title", content: "Book — Dorottya Litkei" },
       { property: "og:description", content: "Reserve your session with live availability." },
       { property: "og:url", content: "/booking" },
@@ -43,12 +47,15 @@ const DURATIONS = [
   { min: 120, label: "2 hours" },
 ] as const;
 
-type ServiceId = typeof SERVICES[number]["id"];
-type LocationId = typeof LOCATIONS[number]["id"];
+type ServiceId = (typeof SERVICES)[number]["id"];
+type LocationId = (typeof LOCATIONS)[number]["id"];
 
 function formatSlotTime(iso: string) {
   return new Intl.DateTimeFormat("en-GB", {
-    hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Nicosia",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "Europe/Nicosia",
   }).format(new Date(iso));
 }
 
@@ -71,14 +78,17 @@ function Booking() {
   const availability = useQuery({
     queryKey: ["availability", dateKey, duration, location],
     enabled: !!dateKey,
-    queryFn: async () => getAvail({ data: { date: dateKey!, durationMinutes: duration, location } }),
+    queryFn: async () =>
+      getAvail({ data: { date: dateKey!, durationMinutes: duration, location } }),
     staleTime: 30_000,
   });
 
   const slots = availability.data?.slots ?? [];
 
   // reset slot when inputs change
-  useEffect(() => { setSlot(null); }, [dateKey, duration, location]);
+  useEffect(() => {
+    setSlot(null);
+  }, [dateKey, duration, location]);
 
   const canSubmit = !!slot && form.name.trim().length >= 2 && /.+@.+\..+/.test(form.email);
 
@@ -90,14 +100,24 @@ function Booking() {
     try {
       await createBooking({
         data: {
-          service, location, durationMinutes: duration, startsAt: slot,
-          clientName: form.name.trim(), clientEmail: form.email.trim(),
-          clientPhone: form.phone.trim(), notes: form.notes.trim(),
+          service,
+          location,
+          durationMinutes: duration,
+          startsAt: slot,
+          clientName: form.name.trim(),
+          clientEmail: form.email.trim(),
+          clientPhone: form.phone.trim(),
+          notes: form.notes.trim(),
         },
       });
       const when = new Intl.DateTimeFormat("en-GB", {
-        weekday: "long", day: "numeric", month: "long",
-        hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Europe/Nicosia",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+        timeZone: "Europe/Nicosia",
       }).format(new Date(slot));
       setConfirmation({ when });
     } catch (err) {
@@ -116,11 +136,14 @@ function Booking() {
           </span>
           <h1 className="mt-8 font-serif text-4xl md:text-5xl">Request received.</h1>
           <p className="mt-6 text-lg text-muted-foreground">
-            Your requested session on <span className="text-foreground">{confirmation.when}</span> (Cyprus time)
-            is being reviewed. You'll receive an email once Dorottya confirms — typically within 24 hours.
+            Your requested session on <span className="text-foreground">{confirmation.when}</span>{" "}
+            (Cyprus time) is being reviewed. You'll receive an email once Dorottya confirms —
+            typically within 24 hours.
           </p>
           <div className="mt-10 flex justify-center gap-4">
-            <Link to="/" className="btn-luxe btn-luxe-hover">Back home</Link>
+            <Link to="/" className="btn-luxe btn-luxe-hover">
+              Back home
+            </Link>
           </div>
         </div>
       </section>
@@ -132,13 +155,16 @@ function Booking() {
       <section className="pt-32 md:pt-40 pb-12 bg-cream">
         <div className="container-luxe">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Booking</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              Booking
+            </p>
             <h1 className="mt-8 font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02]">
               Reserve your <em className="text-gold not-italic font-medium">place</em>.
             </h1>
             <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Live availability across the coach's calendar. Pick a service, choose a slot
-              and Dorottya will confirm your request within 24 hours.
+              Live availability across the coach's calendar. Pick a service, choose a slot and
+              Dorottya will confirm your request within 24 hours.
             </p>
           </Reveal>
         </div>
@@ -184,9 +210,7 @@ function Booking() {
                   selected={date}
                   onSelect={setDate}
                   disabled={(d) =>
-                    d < startOfDay(new Date()) ||
-                    d > addDays(new Date(), 60) ||
-                    d.getDay() === 0
+                    d < startOfDay(new Date()) || d > addDays(new Date(), 60) || d.getDay() === 0
                   }
                   className={cn("p-2 pointer-events-auto")}
                 />
@@ -196,16 +220,21 @@ function Booking() {
             {/* Times */}
             <Field label="Time (Cyprus local)" icon={<Clock className="h-3.5 w-3.5" />}>
               {!date ? (
-                <p className="mt-3 text-sm text-muted-foreground">Pick a date to see available times.</p>
+                <p className="mt-3 text-sm text-muted-foreground">
+                  Pick a date to see available times.
+                </p>
               ) : availability.isLoading ? (
                 <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
                   <Loader2 className="h-4 w-4 animate-spin" /> Loading availability…
                 </p>
               ) : availability.isError ? (
-                <p className="mt-3 text-sm text-destructive">Could not load availability. Please try again.</p>
+                <p className="mt-3 text-sm text-destructive">
+                  Could not load availability. Please try again.
+                </p>
               ) : slots.length === 0 ? (
                 <p className="mt-3 text-sm text-muted-foreground">
-                  No {duration} min slots available on {format(date, "EEEE d LLLL")}. Try another day or duration.
+                  No {duration} min slots available on {format(date, "EEEE d LLLL")}. Try another
+                  day or duration.
                 </p>
               ) : (
                 <div className="mt-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
@@ -236,9 +265,24 @@ function Booking() {
           <div className="bg-cream p-8 md:p-10 space-y-6 h-fit lg:sticky lg:top-28">
             <h2 className="font-serif text-2xl">Your details</h2>
             <div className="space-y-5">
-              <Input label="Full name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} required />
-              <Input label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} required />
-              <Input label="Phone (optional)" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+              <Input
+                label="Full name"
+                value={form.name}
+                onChange={(v) => setForm({ ...form, name: v })}
+                required
+              />
+              <Input
+                label="Email"
+                type="email"
+                value={form.email}
+                onChange={(v) => setForm({ ...form, email: v })}
+                required
+              />
+              <Input
+                label="Phone (optional)"
+                value={form.phone}
+                onChange={(v) => setForm({ ...form, phone: v })}
+              />
               <label className="block">
                 <span className="eyebrow">Notes (optional)</span>
                 <textarea
@@ -251,9 +295,18 @@ function Booking() {
             </div>
 
             <div className="border-t border-border/60 pt-6 space-y-2 text-sm">
-              <SummaryRow label="Service" value={SERVICES.find((s) => s.id === service)?.label ?? ""} />
-              <SummaryRow label="Location" value={LOCATIONS.find((l) => l.id === location)?.label ?? ""} />
-              <SummaryRow label="Duration" value={DURATIONS.find((d) => d.min === duration)?.label ?? ""} />
+              <SummaryRow
+                label="Service"
+                value={SERVICES.find((s) => s.id === service)?.label ?? ""}
+              />
+              <SummaryRow
+                label="Location"
+                value={LOCATIONS.find((l) => l.id === location)?.label ?? ""}
+              />
+              <SummaryRow
+                label="Duration"
+                value={DURATIONS.find((d) => d.min === duration)?.label ?? ""}
+              />
               <SummaryRow label="Date" value={date ? format(date, "EEE d LLL yyyy") : "—"} />
               <SummaryRow label="Time" value={slot ? `${formatSlotTime(slot)} (Cyprus)` : "—"} />
             </div>
@@ -269,7 +322,9 @@ function Booking() {
             </button>
             <p className="text-xs text-muted-foreground">
               Manual approval by Dorottya. You'll receive email confirmation within 24 hours.{" "}
-              <Link to="/contact" className="link-underline text-foreground">Prefer to chat first?</Link>
+              <Link to="/contact" className="link-underline text-foreground">
+                Prefer to chat first?
+              </Link>
             </p>
           </div>
         </form>
@@ -278,18 +333,35 @@ function Booking() {
   );
 }
 
-function Field({ label, icon, children }: { label: string; icon: React.ReactNode; children: React.ReactNode }) {
+function Field({
+  label,
+  icon,
+  children,
+}: {
+  label: string;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <div>
-      <span className="eyebrow flex items-center gap-2">{icon}{label}</span>
+      <span className="eyebrow flex items-center gap-2">
+        {icon}
+        {label}
+      </span>
       {children}
     </div>
   );
 }
 
 function ChipRow({
-  options, value, onChange,
-}: { options: { value: string; label: string }[]; value: string; onChange: (v: string) => void }) {
+  options,
+  value,
+  onChange,
+}: {
+  options: { value: string; label: string }[];
+  value: string;
+  onChange: (v: string) => void;
+}) {
   return (
     <div className="mt-4 flex flex-wrap gap-2">
       {options.map((opt) => {
@@ -301,7 +373,9 @@ function ChipRow({
             onClick={() => onChange(opt.value)}
             className={cn(
               "px-4 py-2 border text-sm font-serif tracking-wide transition-colors",
-              active ? "border-gold bg-gold text-ink" : "border-border/60 hover:border-gold hover:text-gold",
+              active
+                ? "border-gold bg-gold text-ink"
+                : "border-border/60 hover:border-gold hover:text-gold",
             )}
           >
             {opt.label}
@@ -313,8 +387,18 @@ function ChipRow({
 }
 
 function Input({
-  label, value, onChange, type = "text", required,
-}: { label: string; value: string; onChange: (v: string) => void; type?: string; required?: boolean }) {
+  label,
+  value,
+  onChange,
+  type = "text",
+  required,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <label className="block">
       <span className="eyebrow">{label}</span>

@@ -60,13 +60,13 @@
   --radius: 0.25rem;
 
   /* Brand palette */
-  --background: oklch(1 0 0);              /* #FFFFFF */
-  --cream: oklch(0.975 0.004 90);          /* #F7F7F5 secondary bg */
-  --charcoal: oklch(0.22 0.005 60);        /* deep charcoal */
-  --ink: oklch(0.14 0.004 60);             /* near-black */
-  --gold: oklch(0.74 0.09 82);             /* champagne gold */
-  --gold-soft: oklch(0.86 0.05 82);        /* soft gold */
-  --nude: oklch(0.9 0.02 70);              /* soft nude */
+  --background: oklch(1 0 0); /* #FFFFFF */
+  --cream: oklch(0.975 0.004 90); /* #F7F7F5 secondary bg */
+  --charcoal: oklch(0.22 0.005 60); /* deep charcoal */
+  --ink: oklch(0.14 0.004 60); /* near-black */
+  --gold: oklch(0.74 0.09 82); /* champagne gold */
+  --gold-soft: oklch(0.86 0.05 82); /* soft gold */
+  --nude: oklch(0.9 0.02 70); /* soft nude */
 
   --foreground: var(--charcoal);
   --card: oklch(1 0 0);
@@ -108,8 +108,12 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; }
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -118,12 +122,18 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-serif);
     font-weight: 400;
     letter-spacing: -0.015em;
   }
-  ::selection { background: var(--gold); color: var(--ink); }
+  ::selection {
+    background: var(--gold);
+    color: var(--ink);
+  }
 }
 
 @utility container-luxe {
@@ -131,8 +141,12 @@
   margin-inline: auto;
   padding-inline: 1.5rem;
   max-width: 84rem;
-  @media (min-width: 768px) { padding-inline: 3rem; }
-  @media (min-width: 1280px) { padding-inline: 5rem; }
+  @media (min-width: 768px) {
+    padding-inline: 3rem;
+  }
+  @media (min-width: 1280px) {
+    padding-inline: 5rem;
+  }
 }
 
 @utility eyebrow {
@@ -171,7 +185,11 @@
   cursor: pointer;
 }
 @utility btn-luxe-hover {
-  &:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+  &:hover {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+  }
 }
 
 @utility btn-ghost-luxe {
@@ -198,34 +216,65 @@
   &::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -2px;
-    width: 100%; height: 1px;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 500ms cubic-bezier(0.19, 1, 0.22, 1);
   }
-  &:hover::after { transform: scaleX(1); transform-origin: left; }
+  &:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes slow-zoom {
-  from { transform: scale(1); }
-  to { transform: scale(1.08); }
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }
 
-@utility animate-fade-up { animation: fade-up 1s cubic-bezier(0.19, 1, 0.22, 1) both; }
-@utility animate-fade-in-slow { animation: fade-in 1.4s ease-out both; }
-@utility animate-marquee { animation: marquee 40s linear infinite; }
-@utility animate-slow-zoom { animation: slow-zoom 12s ease-out both; }
+@utility animate-fade-up {
+  animation: fade-up 1s cubic-bezier(0.19, 1, 0.22, 1) both;
+}
+@utility animate-fade-in-slow {
+  animation: fade-in 1.4s ease-out both;
+}
+@utility animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+@utility animate-slow-zoom {
+  animation: slow-zoom 12s ease-out both;
+}

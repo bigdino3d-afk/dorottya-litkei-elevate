@@ -33,7 +33,9 @@ const empty: Omit<Post, "id" | "updated_at"> = {
 };
 
 function slugify(s: string) {
-  return s.toLowerCase().trim()
+  return s
+    .toLowerCase()
+    .trim()
     .replace(/[^a-z0-9\s-]/g, "")
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-")
@@ -46,7 +48,9 @@ function AdminPage() {
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [editing, setEditing] = useState<Post | (Omit<Post, "id" | "updated_at"> & { id?: string }) | null>(null);
+  const [editing, setEditing] = useState<
+    Post | (Omit<Post, "id" | "updated_at"> & { id?: string }) | null
+  >(null);
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
 
@@ -74,7 +78,9 @@ function AdminPage() {
     setPosts((data ?? []) as Post[]);
   }
 
-  useEffect(() => { if (isAdmin) loadPosts(); }, [isAdmin]);
+  useEffect(() => {
+    if (isAdmin) loadPosts();
+  }, [isAdmin]);
 
   async function save() {
     if (!editing) return;
@@ -89,14 +95,18 @@ function AdminPage() {
       category: editing.category || null,
       body: editing.body,
       published: editing.published,
-      published_at: editing.published ? editing.published_at ?? new Date().toISOString() : null,
+      published_at: editing.published ? (editing.published_at ?? new Date().toISOString()) : null,
       author_id: userId,
     };
-    const res = "id" in editing && editing.id
-      ? await supabase.from("posts").update(payload).eq("id", editing.id)
-      : await supabase.from("posts").insert(payload);
+    const res =
+      "id" in editing && editing.id
+        ? await supabase.from("posts").update(payload).eq("id", editing.id)
+        : await supabase.from("posts").insert(payload);
     setSaving(false);
-    if (res.error) { setMsg(res.error.message); return; }
+    if (res.error) {
+      setMsg(res.error.message);
+      return;
+    }
     setEditing(null);
     loadPosts();
   }
@@ -113,7 +123,9 @@ function AdminPage() {
   }
 
   if (isAdmin === null) {
-    return <div className="pt-40 pb-24 container-luxe text-center text-muted-foreground">Loading…</div>;
+    return (
+      <div className="pt-40 pb-24 container-luxe text-center text-muted-foreground">Loading…</div>
+    );
   }
 
   if (!isAdmin) {
@@ -122,9 +134,12 @@ function AdminPage() {
         <p className="eyebrow text-muted-foreground">Restricted</p>
         <h1 className="mt-4 font-serif text-3xl">Admin access required</h1>
         <p className="mt-4 text-muted-foreground">
-          You are signed in as <span className="text-charcoal">{userEmail}</span> but this account has no admin role.
+          You are signed in as <span className="text-charcoal">{userEmail}</span> but this account
+          has no admin role.
         </p>
-        <button onClick={signOut} className="mt-8 eyebrow text-gold hover:underline">Sign out</button>
+        <button onClick={signOut} className="mt-8 eyebrow text-gold hover:underline">
+          Sign out
+        </button>
       </div>
     );
   }
@@ -146,7 +161,10 @@ function AdminPage() {
                 <Plus className="h-4 w-4" /> New article
               </button>
             )}
-            <button onClick={signOut} className="inline-flex items-center gap-2 h-11 px-5 border border-border eyebrow hover:border-gold hover:text-gold transition-colors">
+            <button
+              onClick={signOut}
+              className="inline-flex items-center gap-2 h-11 px-5 border border-border eyebrow hover:border-gold hover:text-gold transition-colors"
+            >
               <LogOut className="h-4 w-4" /> Sign out
             </button>
           </div>
@@ -158,7 +176,13 @@ function AdminPage() {
               <label className="eyebrow text-muted-foreground">Title</label>
               <input
                 value={editing.title}
-                onChange={(e) => setEditing({ ...editing, title: e.target.value, slug: editing.slug || slugify(e.target.value) })}
+                onChange={(e) =>
+                  setEditing({
+                    ...editing,
+                    title: e.target.value,
+                    slug: editing.slug || slugify(e.target.value),
+                  })
+                }
                 className="mt-2 w-full bg-transparent border-b border-border py-3 text-2xl font-serif focus:border-gold outline-none"
                 placeholder="Article title"
               />
@@ -241,14 +265,20 @@ function AdminPage() {
         ) : (
           <div className="mt-10">
             {posts.length === 0 ? (
-              <p className="text-muted-foreground">No articles yet. Click "New article" to write your first one.</p>
+              <p className="text-muted-foreground">
+                No articles yet. Click "New article" to write your first one.
+              </p>
             ) : (
               <ul className="divide-y divide-border">
                 {posts.map((p) => (
                   <li key={p.id} className="py-6 flex items-start justify-between gap-6">
                     <div className="min-w-0">
                       <div className="flex items-center gap-3 eyebrow text-muted-foreground">
-                        {p.published ? <span className="text-gold">Published</span> : <span>Draft</span>}
+                        {p.published ? (
+                          <span className="text-gold">Published</span>
+                        ) : (
+                          <span>Draft</span>
+                        )}
                         {p.category && <span>· {p.category}</span>}
                       </div>
                       <h3 className="mt-2 font-serif text-2xl truncate">{p.title}</h3>
@@ -256,14 +286,28 @@ function AdminPage() {
                     </div>
                     <div className="flex items-center gap-2 shrink-0">
                       {p.published && (
-                        <a href={`/blog/${p.slug}`} target="_blank" rel="noreferrer" className="h-10 w-10 grid place-items-center border border-border hover:border-gold hover:text-gold" title="View">
+                        <a
+                          href={`/blog/${p.slug}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="h-10 w-10 grid place-items-center border border-border hover:border-gold hover:text-gold"
+                          title="View"
+                        >
                           <Eye className="h-4 w-4" />
                         </a>
                       )}
-                      <button onClick={() => setEditing(p)} className="h-10 w-10 grid place-items-center border border-border hover:border-gold hover:text-gold" title="Edit">
+                      <button
+                        onClick={() => setEditing(p)}
+                        className="h-10 w-10 grid place-items-center border border-border hover:border-gold hover:text-gold"
+                        title="Edit"
+                      >
                         <Pencil className="h-4 w-4" />
                       </button>
-                      <button onClick={() => remove(p.id)} className="h-10 w-10 grid place-items-center border border-border hover:border-destructive hover:text-destructive" title="Delete">
+                      <button
+                        onClick={() => remove(p.id)}
+                        className="h-10 w-10 grid place-items-center border border-border hover:border-destructive hover:text-destructive"
+                        title="Delete"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>

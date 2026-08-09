@@ -19,7 +19,11 @@ export function Reveal({
     if (!el) return;
     const io = new IntersectionObserver(
       (entries) => {
-        for (const e of entries) if (e.isIntersecting) { setShown(true); io.disconnect(); }
+        for (const e of entries)
+          if (e.isIntersecting) {
+            setShown(true);
+            io.disconnect();
+          }
       },
       { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
     );

@@ -7,7 +7,10 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — Dorottya Litkei" },
-      { name: "description", content: "Get in touch to book a session, request a workshop or ask a question." },
+      {
+        name: "description",
+        content: "Get in touch to book a session, request a workshop or ask a question.",
+      },
       { property: "og:title", content: "Contact — Dorottya Litkei" },
       { property: "og:url", content: "/contact" },
     ],
@@ -24,14 +27,16 @@ function Contact() {
       <section className="pt-32 md:pt-40 pb-16 bg-cream">
         <div className="container-luxe">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Contact</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              Contact
+            </p>
             <h1 className="mt-8 font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02]">
               Let's <em className="text-gold not-italic font-medium">talk</em>.
             </h1>
             <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Whether you're booking your first session or organising an
-              international workshop, this is the fastest way to reach the
-              studio.
+              Whether you're booking your first session or organising an international workshop,
+              this is the fastest way to reach the studio.
             </p>
           </Reveal>
         </div>
@@ -43,21 +48,32 @@ function Contact() {
             <p className="eyebrow">Studio</p>
             <div className="mt-4 flex items-start gap-3">
               <MapPin className="h-5 w-5 text-gold mt-1 shrink-0" />
-              <p className="font-serif text-xl leading-relaxed">Limassol, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
+              <p className="font-serif text-xl leading-relaxed">
+                Limassol, Cyprus
+                <br />
+                <span className="text-muted-foreground text-base">By appointment only</span>
+              </p>
             </div>
           </div>
           <div>
             <p className="eyebrow">Email</p>
             <div className="mt-4 flex items-center gap-3">
               <Mail className="h-5 w-5 text-gold" />
-              <a href="mailto:studio@dorottyalitkei.com" className="font-serif text-xl link-underline">studio@dorottyalitkei.com</a>
+              <a
+                href="mailto:studio@dorottyalitkei.com"
+                className="font-serif text-xl link-underline"
+              >
+                studio@dorottyalitkei.com
+              </a>
             </div>
           </div>
           <div>
             <p className="eyebrow">Phone</p>
             <div className="mt-4 flex items-center gap-3">
               <Phone className="h-5 w-5 text-gold" />
-              <a href="tel:+35700000000" className="font-serif text-xl link-underline">+357 00 000 000</a>
+              <a href="tel:+35700000000" className="font-serif text-xl link-underline">
+                +357 00 000 000
+              </a>
             </div>
           </div>
           <div>
@@ -69,25 +85,53 @@ function Contact() {
             </div>
           </div>
           <div className="flex gap-4">
-            <a href="#" aria-label="Instagram" className="h-11 w-11 grid place-items-center rounded-full border border-border hover:border-gold hover:text-gold transition-colors"><Instagram className="h-4 w-4" /></a>
-            <a href="#" aria-label="YouTube" className="h-11 w-11 grid place-items-center rounded-full border border-border hover:border-gold hover:text-gold transition-colors"><Youtube className="h-4 w-4" /></a>
-            <a href="#" aria-label="Facebook" className="h-11 w-11 grid place-items-center rounded-full border border-border hover:border-gold hover:text-gold transition-colors"><Facebook className="h-4 w-4" /></a>
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="h-11 w-11 grid place-items-center rounded-full border border-border hover:border-gold hover:text-gold transition-colors"
+            >
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a
+              href="#"
+              aria-label="YouTube"
+              className="h-11 w-11 grid place-items-center rounded-full border border-border hover:border-gold hover:text-gold transition-colors"
+            >
+              <Youtube className="h-4 w-4" />
+            </a>
+            <a
+              href="#"
+              aria-label="Facebook"
+              className="h-11 w-11 grid place-items-center rounded-full border border-border hover:border-gold hover:text-gold transition-colors"
+            >
+              <Facebook className="h-4 w-4" />
+            </a>
           </div>
         </Reveal>
 
         <Reveal delay={150}>
           <form
-            onSubmit={(e) => { e.preventDefault(); setSent(true); }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSent(true);
+            }}
             className="bg-cream p-8 md:p-12 space-y-6"
           >
             <div className="grid gap-6 sm:grid-cols-2">
               <label className="block">
                 <span className="eyebrow">Name</span>
-                <input required className="mt-3 w-full bg-transparent border-b border-border/80 focus:border-gold focus:outline-none py-3 font-serif text-lg" />
+                <input
+                  required
+                  className="mt-3 w-full bg-transparent border-b border-border/80 focus:border-gold focus:outline-none py-3 font-serif text-lg"
+                />
               </label>
               <label className="block">
                 <span className="eyebrow">Email</span>
-                <input required type="email" className="mt-3 w-full bg-transparent border-b border-border/80 focus:border-gold focus:outline-none py-3 font-serif text-lg" />
+                <input
+                  required
+                  type="email"
+                  className="mt-3 w-full bg-transparent border-b border-border/80 focus:border-gold focus:outline-none py-3 font-serif text-lg"
+                />
               </label>
             </div>
             <label className="block">
@@ -103,12 +147,20 @@ function Contact() {
             </label>
             <label className="block">
               <span className="eyebrow">Message</span>
-              <textarea required rows={5} className="mt-3 w-full bg-transparent border-b border-border/80 focus:border-gold focus:outline-none py-3 font-serif text-lg resize-none" />
+              <textarea
+                required
+                rows={5}
+                className="mt-3 w-full bg-transparent border-b border-border/80 focus:border-gold focus:outline-none py-3 font-serif text-lg resize-none"
+              />
             </label>
             <button type="submit" className="btn-luxe btn-luxe-hover w-full sm:w-auto">
               {sent ? "Message Sent" : "Send Message"}
             </button>
-            {sent && <p className="text-sm text-muted-foreground">Thank you — we'll respond within 24 hours.</p>}
+            {sent && (
+              <p className="text-sm text-muted-foreground">
+                Thank you — we'll respond within 24 hours.
+              </p>
+            )}
           </form>
         </Reveal>
       </section>

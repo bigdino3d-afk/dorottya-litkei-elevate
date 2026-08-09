@@ -3,7 +3,9 @@ import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "Sign in — Dorottya Litkei" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({
+    meta: [{ title: "Sign in — Dorottya Litkei" }, { name: "robots", content: "noindex" }],
+  }),
   component: AuthPage,
 });
 
@@ -45,7 +47,9 @@ function AuthPage() {
     <section className="min-h-screen grid place-items-center bg-cream px-6 py-24">
       <div className="w-full max-w-md bg-background p-10 border border-border/60">
         <p className="eyebrow text-muted-foreground">Admin</p>
-        <h1 className="mt-4 font-serif text-3xl">{mode === "signin" ? "Sign in" : "Create account"}</h1>
+        <h1 className="mt-4 font-serif text-3xl">
+          {mode === "signin" ? "Sign in" : "Create account"}
+        </h1>
 
         <form onSubmit={onSubmit} className="mt-8 space-y-5">
           <div>
@@ -81,7 +85,10 @@ function AuthPage() {
 
         <button
           type="button"
-          onClick={() => { setMode(mode === "signin" ? "signup" : "signin"); setMsg(null); }}
+          onClick={() => {
+            setMode(mode === "signin" ? "signup" : "signin");
+            setMsg(null);
+          }}
           className="mt-6 text-sm text-muted-foreground hover:text-gold transition-colors"
         >
           {mode === "signin" ? "Need an account? Create one" : "Have an account? Sign in"}

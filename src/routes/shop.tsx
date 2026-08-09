@@ -9,7 +9,10 @@ export const Route = createFileRoute("/shop")({
   head: () => ({
     meta: [
       { title: "Shop — Dorottya Litkei" },
-      { name: "description", content: "Online courses, training programs, grip products, PDF guides and gift cards." },
+      {
+        name: "description",
+        content: "Online courses, training programs, grip products, PDF guides and gift cards.",
+      },
       { property: "og:title", content: "Shop — Dorottya Litkei" },
       { property: "og:url", content: "/shop" },
     ],
@@ -33,14 +36,16 @@ function Shop() {
       <section className="pt-32 md:pt-40 pb-16 bg-cream">
         <div className="container-luxe">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Shop</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              Shop
+            </p>
             <h1 className="mt-8 font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02]">
               A quiet <em className="text-gold not-italic font-medium">collection</em>.
             </h1>
             <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Online courses, training programs, curated equipment and PDF
-              guides. Full checkout with Stripe and PayPal is arriving with our
-              next phase.
+              Online courses, training programs, curated equipment and PDF guides. Full checkout
+              with Stripe and PayPal is arriving with our next phase.
             </p>
           </Reveal>
         </div>
@@ -51,7 +56,12 @@ function Shop() {
           {PRODUCTS.map((p, i) => (
             <Reveal key={p.name} delay={(i % 3) * 80} className="group">
               <div className="aspect-[4/5] overflow-hidden bg-cream">
-                <img src={p.img} alt={p.name} className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105" loading="lazy" />
+                <img
+                  src={p.img}
+                  alt={p.name}
+                  className="w-full h-full object-cover transition-transform duration-[1400ms] group-hover:scale-105"
+                  loading="lazy"
+                />
               </div>
               <p className="mt-6 eyebrow text-gold">{p.tag}</p>
               <h2 className="mt-3 font-serif text-2xl leading-tight">{p.name}</h2>

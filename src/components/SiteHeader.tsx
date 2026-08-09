@@ -32,9 +32,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
     <header
       className={[
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        solid
-          ? "bg-background/85 backdrop-blur-xl border-b border-border/60"
-          : "bg-transparent",
+        solid ? "bg-background/85 backdrop-blur-xl border-b border-border/60" : "bg-transparent",
       ].join(" ")}
     >
       <div className="container-luxe flex h-20 items-center justify-between gap-6">
@@ -58,7 +56,9 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
               activeOptions={{ exact: n.to === "/" }}
               className={[
                 "text-[0.72rem] font-medium tracking-[0.24em] uppercase link-underline transition-colors",
-                solid ? "text-foreground/80 hover:text-foreground" : "text-white/85 hover:text-white",
+                solid
+                  ? "text-foreground/80 hover:text-foreground"
+                  : "text-white/85 hover:text-white",
               ].join(" ")}
               activeProps={{ className: "text-gold" }}
             >

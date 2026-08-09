@@ -21,15 +21,27 @@ const LOCATIONS = ["studio_limassol", "online", "client_studio"] as const;
 
 function tzOffsetMinutes(date: Date, tz: string): number {
   const dtf = new Intl.DateTimeFormat("en-US", {
-    timeZone: tz, hour12: false,
-    year: "numeric", month: "2-digit", day: "2-digit",
-    hour: "2-digit", minute: "2-digit", second: "2-digit",
+    timeZone: tz,
+    hour12: false,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
   });
   const parts = dtf.formatToParts(date).reduce<Record<string, string>>((a, p) => {
     if (p.type !== "literal") a[p.type] = p.value;
     return a;
   }, {});
-  const asUTC = Date.UTC(+parts.year, +parts.month - 1, +parts.day, +parts.hour, +parts.minute, +parts.second);
+  const asUTC = Date.UTC(
+    +parts.year,
+    +parts.month - 1,
+    +parts.day,
+    +parts.hour,
+    +parts.minute,
+    +parts.second,
+  );
   return (asUTC - date.getTime()) / 60000;
 }
 
@@ -48,11 +60,13 @@ function cyprusWeekday(y: number, m: number, d: number): number {
 
 export const getAvailability = createServerFn({ method: "POST" })
   .inputValidator((raw: unknown) =>
-    z.object({
-      date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-      durationMinutes: z.number().int().min(30).max(240),
-      location: z.enum(LOCATIONS),
-    }).parse(raw),
+    z
+      .object({
+        date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+        durationMinutes: z.number().int().min(30).max(240),
+        location: z.enum(LOCATIONS),
+      })
+      .parse(raw),
   )
   .handler(async ({ data }) => {
     const [y, m, d] = data.date.split("-").map(Number);
@@ -82,7 +96,11 @@ export const getAvailability = createServerFn({ method: "POST" })
     }));
 
     const slots: string[] = [];
-    for (let h = hours.open * 60; h + data.durationMinutes <= hours.close * 60; h += SLOT_STEP_MIN) {
+    for (
+      let h = hours.open * 60;
+      h + data.durationMinutes <= hours.close * 60;
+      h += SLOT_STEP_MIN
+    ) {
       const start = cyprusWallToUTC(y, m, d, Math.floor(h / 60), h % 60);
       const end = new Date(start.getTime() + data.durationMinutes * 60000);
       if (start < minStart) continue;
@@ -96,16 +114,18 @@ export const getAvailability = createServerFn({ method: "POST" })
 
 export const createBookingRequest = createServerFn({ method: "POST" })
   .inputValidator((raw: unknown) =>
-    z.object({
-      service: z.enum(SERVICES),
-      location: z.enum(LOCATIONS),
-      durationMinutes: z.number().int().min(30).max(240),
-      startsAt: z.string().datetime(),
-      clientName: z.string().trim().min(2).max(120),
-      clientEmail: z.string().trim().email().max(200),
-      clientPhone: z.string().trim().max(40).optional().or(z.literal("")),
-      notes: z.string().trim().max(2000).optional().or(z.literal("")),
-    }).parse(raw),
+    z
+      .object({
+        service: z.enum(SERVICES),
+        location: z.enum(LOCATIONS),
+        durationMinutes: z.number().int().min(30).max(240),
+        startsAt: z.string().datetime(),
+        clientName: z.string().trim().min(2).max(120),
+        clientEmail: z.string().trim().email().max(200),
+        clientPhone: z.string().trim().max(40).optional().or(z.literal("")),
+        notes: z.string().trim().max(2000).optional().or(z.literal("")),
+      })
+      .parse(raw),
   )
   .handler(async ({ data }) => {
     const start = new Date(data.startsAt);

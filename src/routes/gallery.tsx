@@ -13,7 +13,10 @@ export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
       { title: "Gallery — Dorottya Litkei" },
-      { name: "description", content: "Editorial photography from the studio, stage and competition floor." },
+      {
+        name: "description",
+        content: "Editorial photography from the studio, stage and competition floor.",
+      },
       { property: "og:title", content: "Gallery — Dorottya Litkei" },
       { property: "og:url", content: "/gallery" },
     ],
@@ -39,13 +42,15 @@ function Gallery() {
       <section className="pt-32 md:pt-40 pb-16 bg-cream">
         <div className="container-luxe">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Gallery</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              Gallery
+            </p>
             <h1 className="mt-8 font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02]">
               Motion, <em className="text-gold not-italic font-medium">still</em>.
             </h1>
             <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Editorial and documentary photography from the studio, stage and
-              training floor.
+              Editorial and documentary photography from the studio, stage and training floor.
             </p>
           </Reveal>
         </div>
@@ -54,7 +59,11 @@ function Gallery() {
       <section className="container-luxe py-20">
         <div className="columns-1 md:columns-2 lg:columns-3 gap-4 md:gap-6 [column-fill:_balance]">
           {IMAGES.map((img, i) => (
-            <Reveal key={i} delay={(i % 4) * 80} className={`mb-4 md:mb-6 break-inside-avoid overflow-hidden group relative ${img.aspect}`}>
+            <Reveal
+              key={i}
+              delay={(i % 4) * 80}
+              className={`mb-4 md:mb-6 break-inside-avoid overflow-hidden group relative ${img.aspect}`}
+            >
               <img
                 src={img.src}
                 alt={img.alt}
@@ -72,7 +81,9 @@ function Gallery() {
           <Reveal className="max-w-xl mx-auto">
             <h2 className="font-serif text-4xl md:text-5xl">Want to be next?</h2>
             <p className="mt-6 text-muted-foreground">Book a session and create your own story.</p>
-            <Link to="/booking" className="btn-luxe btn-luxe-hover mt-10">Book a Lesson</Link>
+            <Link to="/booking" className="btn-luxe btn-luxe-hover mt-10">
+              Book a Lesson
+            </Link>
           </Reveal>
         </div>
       </section>

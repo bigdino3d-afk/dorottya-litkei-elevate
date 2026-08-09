@@ -442,7 +442,9 @@ function ResultLine({ r }: { r: FlatResult }) {
           </span>
         )}
       </span>
-      <span className={`shrink-0 font-serif text-lg md:text-xl tabular-nums ${placeAccent(r.place)}`}>
+      <span
+        className={`shrink-0 font-serif text-lg md:text-xl tabular-nums ${placeAccent(r.place)}`}
+      >
         {r.place}
       </span>
     </li>
@@ -472,9 +474,7 @@ function PersonBlock({
     <div>
       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 border-b border-foreground/40 pb-3 mb-2">
         <h3 className="font-serif text-2xl md:text-3xl leading-tight">{name}</h3>
-        {division && (
-          <p className="font-serif italic text-lg md:text-xl text-gold">{division}</p>
-        )}
+        {division && <p className="font-serif italic text-lg md:text-xl text-gold">{division}</p>}
       </div>
       <ResultList results={results} />
     </div>
@@ -494,13 +494,16 @@ function Achievements() {
       <section className="pt-32 md:pt-40 pb-16 bg-cream">
         <div className="container-luxe">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />My Achievements</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              My Achievements
+            </p>
             <h1 className="mt-8 font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02]">
               A record built on the <em className="text-gold not-italic font-medium">podium</em>.
             </h1>
             <p className="mt-8 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              Personal results and the podiums earned by the students I've
-              coached across Hungarian, European and World championships.
+              Personal results and the podiums earned by the students I've coached across Hungarian,
+              European and World championships.
             </p>
           </Reveal>
         </div>
@@ -508,7 +511,10 @@ function Achievements() {
 
       <section className="container-luxe py-20 md:py-28">
         <Reveal className="max-w-2xl mb-12 md:mb-16">
-          <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Personal Results</p>
+          <p className="eyebrow">
+            <span className="gold-line mr-4 align-middle" />
+            Personal Results
+          </p>
           <h2 className="mt-6 font-serif text-4xl md:text-5xl">Competition record.</h2>
         </Reveal>
         <Reveal>
@@ -517,17 +523,24 @@ function Achievements() {
       </section>
 
       <section className="relative py-24 md:py-32 bg-ink text-white overflow-hidden">
-        <img src={stage} alt="" className="absolute inset-0 h-full w-full object-cover opacity-20" loading="lazy" />
+        <img
+          src={stage}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-20"
+          loading="lazy"
+        />
         <div className="relative container-luxe">
           <Reveal className="max-w-2xl">
-            <p className="eyebrow text-white/60"><span className="gold-line mr-4 align-middle" />Student Results</p>
+            <p className="eyebrow text-white/60">
+              <span className="gold-line mr-4 align-middle" />
+              Student Results
+            </p>
             <h2 className="mt-6 font-serif text-white text-4xl md:text-5xl">
               Coached to the top step.
             </h2>
             <p className="mt-6 text-white/70 max-w-xl leading-relaxed">
-              The athletes I've had the privilege to prepare — grouped by
-              category — and the results they've earned on national and
-              international stages.
+              The athletes I've had the privilege to prepare — grouped by category — and the results
+              they've earned on national and international stages.
             </p>
           </Reveal>
         </div>
@@ -564,15 +577,15 @@ function Achievements() {
           <Reveal className="max-w-xl mx-auto">
             <h2 className="font-serif text-4xl md:text-5xl">Train like a warrior.</h2>
             <p className="mt-6 text-muted-foreground">
-              Whether you're preparing for your first competition or your tenth,
-              the process starts with a single lesson.
+              Whether you're preparing for your first competition or your tenth, the process starts
+              with a single lesson.
             </p>
-            <Link to="/booking" className="btn-luxe btn-luxe-hover mt-10">Book a Lesson</Link>
+            <Link to="/booking" className="btn-luxe btn-luxe-hover mt-10">
+              Book a Lesson
+            </Link>
           </Reveal>
         </div>
       </section>
     </>
   );
 }
-
-

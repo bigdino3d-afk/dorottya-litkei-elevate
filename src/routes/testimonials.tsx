@@ -9,7 +9,10 @@ export const Route = createFileRoute("/testimonials")({
   head: () => ({
     meta: [
       { title: "Reviews — Dorottya Litkei" },
-      { name: "description", content: "Read reviews from students and share your own experience training with Dorottya." },
+      {
+        name: "description",
+        content: "Read reviews from students and share your own experience training with Dorottya.",
+      },
       { property: "og:title", content: "Reviews — Dorottya Litkei" },
       { property: "og:url", content: "/testimonials" },
     ],
@@ -90,12 +93,16 @@ function Testimonials() {
       <section className="pt-32 md:pt-40 pb-16 md:pb-24 bg-cream">
         <div className="container-luxe">
           <Reveal className="max-w-3xl">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />Reviews</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              Reviews
+            </p>
             <h1 className="mt-8 font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-[1.02]">
               In their <em className="text-gold not-italic font-medium">own words</em>.
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-              Share your experience — every review is published instantly and read by future students from around the world.
+              Share your experience — every review is published instantly and read by future
+              students from around the world.
             </p>
           </Reveal>
         </div>
@@ -160,7 +167,9 @@ function Testimonials() {
                 rows={5}
                 className="mt-2 w-full bg-transparent border border-border rounded-md p-4 focus:border-gold outline-none transition-colors resize-none"
               />
-              <p className="mt-2 text-xs text-muted-foreground text-right">{form.quote.length}/1000</p>
+              <p className="mt-2 text-xs text-muted-foreground text-right">
+                {form.quote.length}/1000
+              </p>
             </div>
 
             {message && (
@@ -183,7 +192,10 @@ function Testimonials() {
       <section className="bg-cream">
         <div className="container-luxe py-24">
           <Reveal className="max-w-2xl mx-auto text-center mb-16">
-            <p className="eyebrow"><span className="gold-line mr-4 align-middle" />What people say</p>
+            <p className="eyebrow">
+              <span className="gold-line mr-4 align-middle" />
+              What people say
+            </p>
             <h2 className="mt-6 font-serif text-3xl md:text-5xl">Recent reviews</h2>
           </Reveal>
 
