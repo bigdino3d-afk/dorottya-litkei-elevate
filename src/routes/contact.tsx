@@ -117,7 +117,7 @@ function Contact() {
         <Reveal className="aspect-[16/9] overflow-hidden border border-border">
           <iframe
             title="Studio location"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=33.02%2C34.68%2C33.09%2C34.71&layer=mapnik"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=33.60%2C34.90%2C33.66%2C34.93&layer=mapnik"
             className="w-full h-full grayscale"
             loading="lazy"
           />
