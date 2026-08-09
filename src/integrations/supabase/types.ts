@@ -140,6 +140,57 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          author_id: string | null
+          body: string
+          cover_image_url: string | null
+          created_at: string
+          external_url: string | null
+          id: string
+          published: boolean
+          slug: string
+          sort_order: number
+          status: string
+          summary: string | null
+          title: string
+          updated_at: string
+          year: string | null
+        }
+        Insert: {
+          author_id?: string | null
+          body?: string
+          cover_image_url?: string | null
+          created_at?: string
+          external_url?: string | null
+          id?: string
+          published?: boolean
+          slug: string
+          sort_order?: number
+          status?: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+          year?: string | null
+        }
+        Update: {
+          author_id?: string | null
+          body?: string
+          cover_image_url?: string | null
+          created_at?: string
+          external_url?: string | null
+          id?: string
+          published?: boolean
+          slug?: string
+          sort_order?: number
+          status?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+          year?: string | null
+        }
+        Relationships: []
+      }
       testimonials: {
         Row: {
           created_at: string
