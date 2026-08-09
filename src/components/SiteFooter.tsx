@@ -41,7 +41,9 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow text-white/50 mb-5">Contact</p>
             <ul className="space-y-3 text-sm text-white/70">
-              <li>MGold Studio · Larnaca, Cyprus</li>
+              <li>MGold Studio</li>
+              <li>13–15 Tassou Papadopoulou, 1st floor</li>
+              <li>6042 Larnaca, Cyprus</li>
               <li>studio@dorottyalitkei.com</li>
               <li>+36 30 180 5589</li>
             </ul>

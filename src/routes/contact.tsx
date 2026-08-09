@@ -43,7 +43,7 @@ function Contact() {
             <p className="eyebrow">Studio</p>
             <div className="mt-4 flex items-start gap-3">
               <MapPin className="h-5 w-5 text-gold mt-1 shrink-0" />
-              <p className="font-serif text-xl leading-relaxed">MGold Studio<br />Larnaca, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
+              <p className="font-serif text-xl leading-relaxed">MGold Studio<br />13–15 Tassou Papadopoulou, 1st floor, Flat 101<br />6042 Larnaca, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
             </div>
           </div>
           <div>
