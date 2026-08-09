@@ -43,7 +43,7 @@ function Contact() {
             <p className="eyebrow">Studio</p>
             <div className="mt-4 flex items-start gap-3">
               <MapPin className="h-5 w-5 text-gold mt-1 shrink-0" />
-              <p className="font-serif text-xl leading-relaxed">Limassol, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
+              <p className="font-serif text-xl leading-relaxed">MGold Studio<br />Larnaca, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
             </div>
           </div>
           <div>
@@ -57,7 +57,7 @@ function Contact() {
             <p className="eyebrow">Phone</p>
             <div className="mt-4 flex items-center gap-3">
               <Phone className="h-5 w-5 text-gold" />
-              <a href="tel:+35700000000" className="font-serif text-xl link-underline">+357 00 000 000</a>
+              <a href="tel:+36301805589" className="font-serif text-xl link-underline">+36 30 180 5589</a>
             </div>
           </div>
           <div>

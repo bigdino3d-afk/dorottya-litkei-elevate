@@ -16,13 +16,13 @@ export const Route = createFileRoute("/services")({
 });
 
 const SERVICES = [
-  { name: "Private Lessons", price: "from €90", duration: "60 min", desc: "One-to-one coaching tailored to your body, technique and goals. The fastest path to real progress." },
-  { name: "Group Classes", price: "from €35", duration: "75 min", desc: "Small-group technical sessions capped at six students. Structured levels from beginner to advanced." },
-  { name: "Workshops", price: "from €150", duration: "3 hours", desc: "Immersive workshops focused on tricks, transitions or performance. In Cyprus and internationally." },
-  { name: "Online Coaching", price: "from €200 / mo", duration: "monthly", desc: "Programmed training, video review and weekly calls — full remote coaching with elite standards." },
+  { name: "Private Lessons", price: "€45", duration: "60 min", desc: "One-to-one coaching tailored to your body, technique and goals. The fastest path to real progress." },
+  { name: "Group Classes", price: "€45", duration: "60 min", desc: "Small-group technical sessions capped at six students. Structured levels from beginner to advanced." },
+  { name: "Workshops", price: "on request", duration: "3 hours", desc: "Immersive workshops focused on tricks, transitions or performance. In Cyprus and internationally." },
+  { name: "Online Coaching", price: "€30", duration: "75 min", desc: "Programmed training, video review and weekly calls — full remote coaching with elite standards." },
   { name: "Competition Preparation", price: "custom", duration: "12+ weeks", desc: "End-to-end preparation: choreography, conditioning, mental preparation and travel coaching." },
-  { name: "Stretching & Flexibility", price: "from €70", duration: "60 min", desc: "Systematic mobility work. Splits, back flexibility, shoulders — safe, structured, measurable." },
-  { name: "Strength Training", price: "from €80", duration: "60 min", desc: "Pole-specific strength programming for grip, shoulders, core and lower body." },
+  { name: "Stretching & Flexibility", price: "€45", duration: "60 min", desc: "Systematic mobility work. Splits, back flexibility, shoulders — safe, structured, measurable." },
+  { name: "Strength Training", price: "€45", duration: "60 min", desc: "Pole-specific strength programming for grip, shoulders, core and lower body." },
   { name: "Choreography Consulting", price: "custom", duration: "project", desc: "Choreography design and refinement for competition, performance or personal projects." },
 ];
 

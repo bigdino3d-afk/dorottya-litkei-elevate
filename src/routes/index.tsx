@@ -78,7 +78,7 @@ function Home() {
                 Book a Lesson <ArrowUpRight className="h-3.5 w-3.5" />
               </Link>
               <Link to="/services" className="btn-ghost-luxe">Workshops</Link>
-              <Link to="/shop" className="btn-ghost-luxe">Shop</Link>
+              <Link to="/projects" className="btn-ghost-luxe">Projects</Link>
               <Link to="/about" className="btn-ghost-luxe">About Me</Link>
             </div>
           </div>

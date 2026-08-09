@@ -31,7 +31,7 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow text-white/50 mb-5">Studio</p>
             <ul className="space-y-3 text-sm">
-              <li><Link to="/shop" className="link-underline">Shop</Link></li>
+              <li><Link to="/projects" className="link-underline">Projects</Link></li>
               <li><Link to="/testimonials" className="link-underline">Testimonials</Link></li>
               <li><Link to="/faq" className="link-underline">FAQ</Link></li>
               <li><Link to="/contact" className="link-underline">Contact</Link></li>
@@ -41,9 +41,9 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow text-white/50 mb-5">Contact</p>
             <ul className="space-y-3 text-sm text-white/70">
-              <li>Limassol, Cyprus</li>
+              <li>MGold Studio · Larnaca, Cyprus</li>
               <li>studio@dorottyalitkei.com</li>
-              <li>+357 00 000 000</li>
+              <li>+36 30 180 5589</li>
             </ul>
             <div className="mt-6 flex items-center gap-4">
               <a href="#" aria-label="Instagram" className="text-white/60 hover:text-gold transition-colors"><Instagram className="h-4 w-4" /></a>
