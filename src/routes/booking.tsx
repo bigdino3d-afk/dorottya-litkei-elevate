@@ -31,7 +31,7 @@ const SERVICES = [
 ] as const;
 
 const LOCATIONS = [
-  { id: "studio_limassol", label: "Studio · Limassol" },
+  { id: "studio_limassol", label: "MGold Studio · Larnaca" },
   { id: "online", label: "Online" },
   { id: "client_studio", label: "Client's studio" },
 ] as const;

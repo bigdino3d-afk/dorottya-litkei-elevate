@@ -43,7 +43,7 @@ function Contact() {
             <p className="eyebrow">Studio</p>
             <div className="mt-4 flex items-start gap-3">
               <MapPin className="h-5 w-5 text-gold mt-1 shrink-0" />
-              <p className="font-serif text-xl leading-relaxed">Limassol, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
+              <p className="font-serif text-xl leading-relaxed">MGold Studio<br />13–15 Tassou Papadopoulou, 1st floor, Flat 101<br />6042 Larnaca, Cyprus<br /><span className="text-muted-foreground text-base">By appointment only</span></p>
             </div>
           </div>
           <div>
@@ -57,7 +57,7 @@ function Contact() {
             <p className="eyebrow">Phone</p>
             <div className="mt-4 flex items-center gap-3">
               <Phone className="h-5 w-5 text-gold" />
-              <a href="tel:+35700000000" className="font-serif text-xl link-underline">+357 00 000 000</a>
+              <a href="tel:+36301805589" className="font-serif text-xl link-underline">+36 30 180 5589</a>
             </div>
           </div>
           <div>
@@ -117,7 +117,7 @@ function Contact() {
         <Reveal className="aspect-[16/9] overflow-hidden border border-border">
           <iframe
             title="Studio location"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=33.02%2C34.68%2C33.09%2C34.71&layer=mapnik"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=33.60%2C34.90%2C33.66%2C34.93&layer=mapnik"
             className="w-full h-full grayscale"
             loading="lazy"
           />
