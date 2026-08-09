@@ -12,7 +12,6 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as MediaRouteImport } from './routes/media'
@@ -43,11 +42,6 @@ const TermsRoute = TermsRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -144,7 +138,6 @@ export interface FileRoutesByFullPath {
   '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
@@ -165,7 +158,6 @@ export interface FileRoutesByTo {
   '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
@@ -188,7 +180,6 @@ export interface FileRoutesById {
   '/media': typeof MediaRoute
   '/privacy': typeof PrivacyRoute
   '/services': typeof ServicesRoute
-  '/shop': typeof ShopRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
@@ -211,7 +202,6 @@ export interface FileRouteTypes {
     | '/media'
     | '/privacy'
     | '/services'
-    | '/shop'
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
@@ -232,7 +222,6 @@ export interface FileRouteTypes {
     | '/media'
     | '/privacy'
     | '/services'
-    | '/shop'
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
@@ -254,7 +243,6 @@ export interface FileRouteTypes {
     | '/media'
     | '/privacy'
     | '/services'
-    | '/shop'
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
@@ -277,7 +265,6 @@ export interface RootRouteChildren {
   MediaRoute: typeof MediaRoute
   PrivacyRoute: typeof PrivacyRoute
   ServicesRoute: typeof ServicesRoute
-  ShopRoute: typeof ShopRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
@@ -304,13 +291,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -464,7 +444,6 @@ const rootRouteChildren: RootRouteChildren = {
   MediaRoute: MediaRoute,
   PrivacyRoute: PrivacyRoute,
   ServicesRoute: ServicesRoute,
-  ShopRoute: ShopRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
@@ -472,13 +451,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
