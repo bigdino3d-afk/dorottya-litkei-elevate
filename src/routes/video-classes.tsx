@@ -20,7 +20,7 @@ export const Route = createFileRoute("/video-classes")({
     ],
     links: [{ rel: "canonical", href: "/video-classes" }],
   }),
-  component: VideoClasses;
+  component: VideoClasses,
 });
 
 type Video = {
