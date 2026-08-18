@@ -14,6 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
+      availability_blocks: {
+        Row: {
+          created_at: string
+          ends_at: string
+          id: string
+          reason: string | null
+          starts_at: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          ends_at: string
+          id?: string
+          reason?: string | null
+          starts_at: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          ends_at?: string
+          id?: string
+          reason?: string | null
+          starts_at?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      availability_rules: {
+        Row: {
+          close_minute: number
+          closed: boolean
+          created_at: string
+          id: string
+          open_minute: number
+          updated_at: string
+          weekday: number
+        }
+        Insert: {
+          close_minute?: number
+          closed?: boolean
+          created_at?: string
+          id?: string
+          open_minute?: number
+          updated_at?: string
+          weekday: number
+        }
+        Update: {
+          close_minute?: number
+          closed?: boolean
+          created_at?: string
+          id?: string
+          open_minute?: number
+          updated_at?: string
+          weekday?: number
+        }
+        Relationships: []
+      }
       bookings: {
         Row: {
           client_email: string
@@ -236,6 +293,57 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      videos: {
+        Row: {
+          created_at: string
+          currency: string
+          description: string | null
+          duration_label: string | null
+          id: string
+          level: string | null
+          preview_url: string | null
+          price_cents: number
+          published: boolean
+          sort_order: number
+          thumbnail_url: string | null
+          title: string
+          updated_at: string
+          video_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          currency?: string
+          description?: string | null
+          duration_label?: string | null
+          id?: string
+          level?: string | null
+          preview_url?: string | null
+          price_cents?: number
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string
+          video_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          currency?: string
+          description?: string | null
+          duration_label?: string | null
+          id?: string
+          level?: string | null
+          preview_url?: string | null
+          price_cents?: number
+          published?: boolean
+          sort_order?: number
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string
+          video_url?: string | null
         }
         Relationships: []
       }
