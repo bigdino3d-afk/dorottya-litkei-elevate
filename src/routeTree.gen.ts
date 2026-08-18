@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as VideoClassesRouteImport } from './routes/video-classes'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -31,6 +32,11 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
+const VideoClassesRoute = VideoClassesRouteImport.update({
+  id: '/video-classes',
+  path: '/video-classes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TestimonialsRoute = TestimonialsRouteImport.update({
   id: '/testimonials',
   path: '/testimonials',
@@ -155,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -177,6 +184,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -201,6 +209,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
+  '/video-classes': typeof VideoClassesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -225,6 +234,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
+    | '/video-classes'
     | '/admin'
     | '/manage-projects'
     | '/blog/$slug'
@@ -247,6 +257,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
+    | '/video-classes'
     | '/admin'
     | '/manage-projects'
     | '/blog/$slug'
@@ -270,6 +281,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/testimonials'
+    | '/video-classes'
     | '/_authenticated/admin'
     | '/_authenticated/manage-projects'
     | '/blog/$slug'
@@ -294,10 +306,18 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
+  VideoClassesRoute: typeof VideoClassesRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/video-classes': {
+      id: '/video-classes'
+      path: '/video-classes'
+      fullPath: '/video-classes'
+      preLoaderRoute: typeof VideoClassesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/testimonials': {
       id: '/testimonials'
       path: '/testimonials'
@@ -490,6 +510,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
+  VideoClassesRoute: VideoClassesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
