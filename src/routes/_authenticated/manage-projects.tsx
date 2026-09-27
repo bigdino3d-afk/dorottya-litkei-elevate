@@ -148,6 +148,8 @@ function ManageProjects() {
             <div className="mt-3 flex gap-4 eyebrow">
               <Link to="/admin" className="text-muted-foreground hover:text-gold">Journal</Link>
               <span className="text-gold">Projects</span>
+              <Link to="/manage-videos" className="text-muted-foreground hover:text-gold">Videos</Link>
+              <Link to="/manage-calendar" className="text-muted-foreground hover:text-gold">Calendar</Link>
             </div>
           </div>
           <div className="flex items-center gap-3">

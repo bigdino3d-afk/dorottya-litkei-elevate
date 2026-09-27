@@ -16,6 +16,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -29,7 +30,9 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
+import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authenticated/manage-calendar'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const VideoClassesRoute = VideoClassesRouteImport.update({
@@ -65,6 +68,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaKitRoute = MediaKitRouteImport.update({
+  id: '/media-kit',
+  path: '/media-kit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MediaRoute = MediaRouteImport.update({
@@ -131,10 +139,22 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const AuthenticatedManageVideosRoute =
+  AuthenticatedManageVideosRouteImport.update({
+    id: '/manage-videos',
+    path: '/manage-videos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedManageProjectsRoute =
   AuthenticatedManageProjectsRouteImport.update({
     id: '/manage-projects',
     path: '/manage-projects',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedManageCalendarRoute =
+  AuthenticatedManageCalendarRouteImport.update({
+    id: '/manage-calendar',
+    path: '/manage-calendar',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -155,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
+  '/media-kit': typeof MediaKitRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -163,7 +184,9 @@ export interface FileRoutesByFullPath {
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesByTo {
@@ -178,6 +201,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
+  '/media-kit': typeof MediaKitRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -186,7 +210,9 @@ export interface FileRoutesByTo {
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesById {
@@ -203,6 +229,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
+  '/media-kit': typeof MediaKitRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -211,7 +238,9 @@ export interface FileRoutesById {
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRouteTypes {
@@ -228,6 +257,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/media'
+    | '/media-kit'
     | '/privacy'
     | '/projects'
     | '/services'
@@ -236,7 +266,9 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/video-classes'
     | '/admin'
+    | '/manage-calendar'
     | '/manage-projects'
+    | '/manage-videos'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -251,6 +283,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/media'
+    | '/media-kit'
     | '/privacy'
     | '/projects'
     | '/services'
@@ -259,7 +292,9 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/video-classes'
     | '/admin'
+    | '/manage-calendar'
     | '/manage-projects'
+    | '/manage-videos'
     | '/blog/$slug'
   id:
     | '__root__'
@@ -275,6 +310,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/media'
+    | '/media-kit'
     | '/privacy'
     | '/projects'
     | '/services'
@@ -283,7 +319,9 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/video-classes'
     | '/_authenticated/admin'
+    | '/_authenticated/manage-calendar'
     | '/_authenticated/manage-projects'
+    | '/_authenticated/manage-videos'
     | '/blog/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -300,6 +338,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   MediaRoute: typeof MediaRoute
+  MediaKitRoute: typeof MediaKitRoute
   PrivacyRoute: typeof PrivacyRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
@@ -358,6 +397,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media-kit': {
+      id: '/media-kit'
+      path: '/media-kit'
+      fullPath: '/media-kit'
+      preLoaderRoute: typeof MediaKitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/media': {
@@ -451,11 +497,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/_authenticated/manage-videos': {
+      id: '/_authenticated/manage-videos'
+      path: '/manage-videos'
+      fullPath: '/manage-videos'
+      preLoaderRoute: typeof AuthenticatedManageVideosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/manage-projects': {
       id: '/_authenticated/manage-projects'
       path: '/manage-projects'
       fullPath: '/manage-projects'
       preLoaderRoute: typeof AuthenticatedManageProjectsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/manage-calendar': {
+      id: '/_authenticated/manage-calendar'
+      path: '/manage-calendar'
+      fullPath: '/manage-calendar'
+      preLoaderRoute: typeof AuthenticatedManageCalendarRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin': {
@@ -470,12 +530,16 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedManageCalendarRoute: typeof AuthenticatedManageCalendarRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
+  AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedManageCalendarRoute: AuthenticatedManageCalendarRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
+  AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -504,6 +568,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   MediaRoute: MediaRoute,
+  MediaKitRoute: MediaKitRoute,
   PrivacyRoute: PrivacyRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,

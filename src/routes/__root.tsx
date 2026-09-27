@@ -125,7 +125,7 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const transparentHeader = pathname === "/";
+  const transparentHeader = pathname === "/" || pathname === "/media-kit";
 
   return (
     <QueryClientProvider client={queryClient}>

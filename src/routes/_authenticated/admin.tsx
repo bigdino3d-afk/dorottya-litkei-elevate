@@ -139,6 +139,8 @@ function AdminPage() {
             <div className="mt-3 flex gap-4 eyebrow">
               <span className="text-gold">Journal</span>
               <Link to="/manage-projects" className="text-muted-foreground hover:text-gold">Projects</Link>
+              <Link to="/manage-videos" className="text-muted-foreground hover:text-gold">Videos</Link>
+              <Link to="/manage-calendar" className="text-muted-foreground hover:text-gold">Calendar</Link>
             </div>
           </div>
 
