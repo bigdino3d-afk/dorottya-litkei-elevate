@@ -16,6 +16,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as MediaKitRouteImport } from './routes/media-kit'
 import { Route as MediaRouteImport } from './routes/media'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FaqRouteImport } from './routes/faq'
@@ -67,6 +68,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaKitRoute = MediaKitRouteImport.update({
+  id: '/media-kit',
+  path: '/media-kit',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MediaRoute = MediaRouteImport.update({
@@ -169,6 +175,7 @@ export interface FileRoutesByFullPath {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
+  '/media-kit': typeof MediaKitRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -194,6 +201,7 @@ export interface FileRoutesByTo {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
+  '/media-kit': typeof MediaKitRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -221,6 +229,7 @@ export interface FileRoutesById {
   '/faq': typeof FaqRoute
   '/gallery': typeof GalleryRoute
   '/media': typeof MediaRoute
+  '/media-kit': typeof MediaKitRoute
   '/privacy': typeof PrivacyRoute
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
@@ -248,6 +257,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/media'
+    | '/media-kit'
     | '/privacy'
     | '/projects'
     | '/services'
@@ -273,6 +283,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/media'
+    | '/media-kit'
     | '/privacy'
     | '/projects'
     | '/services'
@@ -299,6 +310,7 @@ export interface FileRouteTypes {
     | '/faq'
     | '/gallery'
     | '/media'
+    | '/media-kit'
     | '/privacy'
     | '/projects'
     | '/services'
@@ -326,6 +338,7 @@ export interface RootRouteChildren {
   FaqRoute: typeof FaqRoute
   GalleryRoute: typeof GalleryRoute
   MediaRoute: typeof MediaRoute
+  MediaKitRoute: typeof MediaKitRoute
   PrivacyRoute: typeof PrivacyRoute
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
@@ -384,6 +397,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media-kit': {
+      id: '/media-kit'
+      path: '/media-kit'
+      fullPath: '/media-kit'
+      preLoaderRoute: typeof MediaKitRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/media': {
@@ -548,6 +568,7 @@ const rootRouteChildren: RootRouteChildren = {
   FaqRoute: FaqRoute,
   GalleryRoute: GalleryRoute,
   MediaRoute: MediaRoute,
+  MediaKitRoute: MediaKitRoute,
   PrivacyRoute: PrivacyRoute,
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
