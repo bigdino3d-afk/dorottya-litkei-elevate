@@ -29,6 +29,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
@@ -131,6 +132,12 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const AuthenticatedManageVideosRoute =
+  AuthenticatedManageVideosRouteImport.update({
+    id: '/manage-videos',
+    path: '/manage-videos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedManageProjectsRoute =
   AuthenticatedManageProjectsRouteImport.update({
     id: '/manage-projects',
@@ -164,6 +171,7 @@ export interface FileRoutesByFullPath {
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesByTo {
@@ -187,6 +195,7 @@ export interface FileRoutesByTo {
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRoutesById {
@@ -212,6 +221,7 @@ export interface FileRoutesById {
   '/video-classes': typeof VideoClassesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
 }
 export interface FileRouteTypes {
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/video-classes'
     | '/admin'
     | '/manage-projects'
+    | '/manage-videos'
     | '/blog/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/video-classes'
     | '/admin'
     | '/manage-projects'
+    | '/manage-videos'
     | '/blog/$slug'
   id:
     | '__root__'
@@ -284,6 +296,7 @@ export interface FileRouteTypes {
     | '/video-classes'
     | '/_authenticated/admin'
     | '/_authenticated/manage-projects'
+    | '/_authenticated/manage-videos'
     | '/blog/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -451,6 +464,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/_authenticated/manage-videos': {
+      id: '/_authenticated/manage-videos'
+      path: '/manage-videos'
+      fullPath: '/manage-videos'
+      preLoaderRoute: typeof AuthenticatedManageVideosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/manage-projects': {
       id: '/_authenticated/manage-projects'
       path: '/manage-projects'
@@ -471,11 +491,13 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
+  AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
+  AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
