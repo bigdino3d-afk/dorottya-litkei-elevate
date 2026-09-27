@@ -31,6 +31,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
+import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authenticated/manage-calendar'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const VideoClassesRoute = VideoClassesRouteImport.update({
@@ -144,6 +145,12 @@ const AuthenticatedManageProjectsRoute =
     path: '/manage-projects',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedManageCalendarRoute =
+  AuthenticatedManageCalendarRouteImport.update({
+    id: '/manage-calendar',
+    path: '/manage-calendar',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -170,6 +177,7 @@ export interface FileRoutesByFullPath {
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -194,6 +202,7 @@ export interface FileRoutesByTo {
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
+  '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -220,6 +229,7 @@ export interface FileRoutesById {
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -246,6 +256,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/video-classes'
     | '/admin'
+    | '/manage-calendar'
     | '/manage-projects'
     | '/manage-videos'
     | '/blog/$slug'
@@ -270,6 +281,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/video-classes'
     | '/admin'
+    | '/manage-calendar'
     | '/manage-projects'
     | '/manage-videos'
     | '/blog/$slug'
@@ -295,6 +307,7 @@ export interface FileRouteTypes {
     | '/testimonials'
     | '/video-classes'
     | '/_authenticated/admin'
+    | '/_authenticated/manage-calendar'
     | '/_authenticated/manage-projects'
     | '/_authenticated/manage-videos'
     | '/blog/$slug'
@@ -478,6 +491,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedManageProjectsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manage-calendar': {
+      id: '/_authenticated/manage-calendar'
+      path: '/manage-calendar'
+      fullPath: '/manage-calendar'
+      preLoaderRoute: typeof AuthenticatedManageCalendarRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin': {
       id: '/_authenticated/admin'
       path: '/admin'
@@ -490,12 +510,14 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedManageCalendarRoute: typeof AuthenticatedManageCalendarRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
   AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedManageCalendarRoute: AuthenticatedManageCalendarRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
   AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
 }
