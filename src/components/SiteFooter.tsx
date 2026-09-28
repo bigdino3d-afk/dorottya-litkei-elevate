@@ -33,6 +33,7 @@ export function SiteFooter() {
             <ul className="space-y-3 text-sm">
               <li><Link to="/projects" className="link-underline">Projects</Link></li>
               <li><Link to="/video-classes" className="link-underline">Video Classes</Link></li>
+              <li><Link to="/media-kit" className="link-underline">Media Kit</Link></li>
               <li><Link to="/testimonials" className="link-underline">Testimonials</Link></li>
               <li><Link to="/faq" className="link-underline">FAQ</Link></li>
               <li><Link to="/contact" className="link-underline">Contact</Link></li>
