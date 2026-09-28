@@ -122,13 +122,19 @@ function MediaKit() {
         <Reveal>
           <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-tight">Channels</h2>
           <p className="mt-4 max-w-xl text-kit-muted">
-            Live audience figures are inserted once the latest analytics exports are supplied.
+            Figures taken directly from Instagram and Facebook analytics, September 2026.
           </p>
         </Reveal>
         <div className="mt-12 grid gap-px bg-kit-line/50 sm:grid-cols-3">
-          <Channel icon={<Instagram className="h-4 w-4" />} name="Instagram" handle="@dorottyalitkei" />
-          <Channel icon={<Facebook className="h-4 w-4" />} name="Facebook" handle="Dorottya Litkei" />
-          <Channel icon={<Music2 className="h-4 w-4" />} name="TikTok" handle="@dorottyalitkei" />
+          <Channel icon={<Instagram className="h-4 w-4" />} name="Instagram" handle="@dorottyalitkei" value="4,481" note="followers · +52.4% in 90 days" />
+          <Channel icon={<Facebook className="h-4 w-4" />} name="Facebook" handle="Dotti Pole & Dance" value="657K" note="views in 90 days · 309K viewers" />
+          <Channel icon={<Music2 className="h-4 w-4" />} name="TikTok" handle="@dorottyalitkei" value={PLACEHOLDER} note="followers pending" />
+        </div>
+        <div className="mt-px grid gap-px bg-kit-line/50 sm:grid-cols-4">
+          <Stat label="FB views · 28 days" value="507,637" />
+          <Stat label="FB engagements · 28 days" value="26,552" />
+          <Stat label="FB net new followers · 28 days" value="6,375" />
+          <Stat label="Growth vs. prior period" value="+279%" />
         </div>
       </Section>
 
@@ -138,8 +144,8 @@ function MediaKit() {
           <Reveal>
             <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-tight">Who is watching</h2>
             <p className="mt-6 max-w-md text-kit-muted leading-relaxed">
-              This section is built to receive real analytics: geography, age, gender,
-              reach and engagement, plus screenshots straight from the platform exports.
+              A predominantly female, 25–54 audience with real purchasing power — and an
+              international reach: 94.9% of Reels viewers are not yet followers.
             </p>
             <div className="mt-10 relative aspect-[4/3]">
               <img src={sunset.url} alt="Dorottya Litkei training on a seaside pole at sunset" className="h-full w-full object-cover" loading="lazy" />
@@ -148,37 +154,36 @@ function MediaKit() {
 
           <div className="space-y-10">
             <Reveal>
-              <h3 className="text-[0.66rem] tracking-[0.3em] uppercase text-kit-muted">Top countries</h3>
+              <h3 className="text-[0.66rem] tracking-[0.3em] uppercase text-kit-muted">Top countries · Instagram followers</h3>
               <ul className="mt-5 space-y-3">
-                {["Hungary", "Cyprus", "Germany", "United Kingdom", "United States"].map((c) => (
+                {[["Hungary", "26.7%"], ["United States", "6.4%"], ["Argentina", "6.3%"], ["Italy", "5.3%"], ["Mexico", "4.7%"]].map(([c, v]) => (
                   <li key={c} className="flex items-center justify-between gap-6 border-b border-kit-line/50 pb-3">
                     <span className="font-serif text-lg">{c}</span>
-                    <span className="text-[0.66rem] tracking-[0.2em] uppercase text-kit-muted">{PLACEHOLDER}</span>
+                    <span className="font-serif text-lg text-gold">{v}</span>
                   </li>
                 ))}
               </ul>
             </Reveal>
 
             <Reveal className="grid gap-px bg-kit-line/50 sm:grid-cols-2">
-              <Stat label="Age 25–34" value={PLACEHOLDER} />
-              <Stat label="Age 35–44" value={PLACEHOLDER} />
-              <Stat label="Female audience" value={PLACEHOLDER} />
-              <Stat label="Avg. engagement rate" value={PLACEHOLDER} />
-              <Stat label="Monthly reach" value={PLACEHOLDER} />
-              <Stat label="Monthly video views" value={PLACEHOLDER} />
+              <Stat label="Female audience" value="84.2%" />
+              <Stat label="Age 25–54" value="91.2%" />
+              <Stat label="Reels reach · non-followers" value="94.9%" />
+              <Stat label="FB 3-second views · 90 days" value="301,403" />
             </Reveal>
 
             <Reveal>
-              <h3 className="text-[0.66rem] tracking-[0.3em] uppercase text-kit-muted">Analytics screenshots</h3>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                {[1, 2].map((i) => (
-                  <div key={i} className="aspect-[4/3] border border-dashed border-kit-line/70 grid place-items-center text-center px-6">
-                    <span className="text-[0.62rem] tracking-[0.26em] uppercase text-kit-muted">
-                      Analytics export {i}<br />to be added
-                    </span>
-                  </div>
+              <h3 className="text-[0.66rem] tracking-[0.3em] uppercase text-kit-muted">Age · Instagram followers</h3>
+              <ul className="mt-5 space-y-3">
+                {[["18–24", 3.8], ["25–34", 34.5], ["35–44", 40.2], ["45–54", 16.5], ["55–64", 3.4], ["65+", 1.6]].map(([a, v]) => (
+                  <li key={a as string} className="grid grid-cols-[4rem_1fr_3.5rem] items-center gap-4 text-sm">
+                    <span className="text-kit-muted">{a}</span>
+                    <span className="h-1 bg-kit-line/50"><span className="block h-full bg-gold" style={{ width: `${((v as number) / 40.2) * 100}%` }} /></span>
+                    <span className="text-right">{v}%</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
+              <p className="mt-6 text-xs text-kit-muted">Top Reels markets: Italy 10%, Argentina 7.8%, Poland 7.2%, Germany 7.1%, France 6.4%.</p>
             </Reveal>
           </div>
         </div>
@@ -280,14 +285,14 @@ function Section({
   );
 }
 
-function Channel({ icon, name, handle }: { icon: React.ReactNode; name: string; handle: string }) {
+function Channel({ icon, name, handle, value, note }: { icon: React.ReactNode; name: string; handle: string; value: string; note: string }) {
   return (
     <div className="bg-kit-black p-8">
       <div className="flex items-center gap-3 text-gold">{icon}
         <span className="text-[0.66rem] tracking-[0.24em] uppercase">{name}</span>
       </div>
-      <p className="mt-6 font-serif text-3xl">{PLACEHOLDER}</p>
-      <p className="mt-2 text-sm text-kit-muted">{handle} · followers pending</p>
+      <p className="mt-6 font-serif text-3xl">{value}</p>
+      <p className="mt-2 text-sm text-kit-muted">{handle} · {note}</p>
     </div>
   );
 }
