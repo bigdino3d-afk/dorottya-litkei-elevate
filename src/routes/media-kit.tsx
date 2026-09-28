@@ -126,9 +126,9 @@ function MediaKit() {
           </p>
         </Reveal>
         <div className="mt-12 grid gap-px bg-kit-line/50 sm:grid-cols-3">
-          <Channel icon={<Instagram className="h-4 w-4" />} name="Instagram" handle="@dorottyalitkei" value="4,481" note="followers · +52.4% in 90 days" />
-          <Channel icon={<Facebook className="h-4 w-4" />} name="Facebook" handle="Dotti Pole & Dance" value="657K" note="views in 90 days · 309K viewers" />
-          <Channel icon={<Music2 className="h-4 w-4" />} name="TikTok" handle="@dorottyalitkei" value={PLACEHOLDER} note="followers pending" />
+          <Channel icon={<Instagram className="h-4 w-4" />} name="Instagram" handle="@_dotti_poleanddance" href="https://www.instagram.com/_dotti_poleanddance" value="4,481" note="followers · +52.4% in 90 days" />
+          <Channel icon={<Facebook className="h-4 w-4" />} name="Facebook" handle="Dotti Pole & Dance" href="https://www.facebook.com/share/19YCdHhhcJ/" value="657K" note="views in 90 days · 309K viewers" />
+          <Channel icon={<Music2 className="h-4 w-4" />} name="TikTok" handle="@dorottya.23" href="https://www.tiktok.com/@dorottya.23" value={PLACEHOLDER} note="followers pending" />
         </div>
         <div className="mt-px grid gap-px bg-kit-line/50 sm:grid-cols-4">
           <Stat label="FB views · 28 days" value="507,637" />
@@ -285,14 +285,16 @@ function Section({
   );
 }
 
-function Channel({ icon, name, handle, value, note }: { icon: React.ReactNode; name: string; handle: string; value: string; note: string }) {
+function Channel({ icon, name, handle, href, value, note }: { icon: React.ReactNode; name: string; handle: string; href: string; value: string; note: string }) {
   return (
     <div className="bg-kit-black p-8">
       <div className="flex items-center gap-3 text-gold">{icon}
         <span className="text-[0.66rem] tracking-[0.24em] uppercase">{name}</span>
       </div>
       <p className="mt-6 font-serif text-3xl">{value}</p>
-      <p className="mt-2 text-sm text-kit-muted">{handle} · {note}</p>
+      <p className="mt-2 text-sm text-kit-muted">
+        <a href={href} target="_blank" rel="noreferrer" className="hover:text-gold transition-colors">{handle}</a> · {note}
+      </p>
     </div>
   );
 }
