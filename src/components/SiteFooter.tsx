@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Youtube, Facebook, Mail } from "lucide-react";
+import { Instagram, Music2, Facebook, Mail } from "lucide-react";
 
 export function SiteFooter() {
   return (
