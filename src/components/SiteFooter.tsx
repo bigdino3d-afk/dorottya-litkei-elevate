@@ -50,9 +50,9 @@ export function SiteFooter() {
               <li>+36 30 180 5589</li>
             </ul>
             <div className="mt-6 flex items-center gap-4">
-              <a href="#" aria-label="Instagram" className="text-white/60 hover:text-gold transition-colors"><Instagram className="h-4 w-4" /></a>
-              <a href="#" aria-label="YouTube" className="text-white/60 hover:text-gold transition-colors"><Youtube className="h-4 w-4" /></a>
-              <a href="#" aria-label="Facebook" className="text-white/60 hover:text-gold transition-colors"><Facebook className="h-4 w-4" /></a>
+              <a href="https://www.instagram.com/_dotti_poleanddance" target="_blank" rel="noreferrer" aria-label="Instagram" className="text-white/60 hover:text-gold transition-colors"><Instagram className="h-4 w-4" /></a>
+              <a href="https://www.tiktok.com/@dorottya.23" target="_blank" rel="noreferrer" aria-label="TikTok" className="text-white/60 hover:text-gold transition-colors"><Music2 className="h-4 w-4" /></a>
+              <a href="https://www.facebook.com/share/19YCdHhhcJ/" target="_blank" rel="noreferrer" aria-label="Facebook" className="text-white/60 hover:text-gold transition-colors"><Facebook className="h-4 w-4" /></a>
               <a href="mailto:studio@dorottyalitkei.com" aria-label="Email" className="text-white/60 hover:text-gold transition-colors"><Mail className="h-4 w-4" /></a>
             </div>
           </div>

@@ -258,9 +258,9 @@ function MediaKit() {
               <ContactRow icon={<Mail className="h-4 w-4" />} label="xxdorottyaxx@gmail.com" href="mailto:xxdorottyaxx@gmail.com" />
               <ContactRow icon={<Phone className="h-4 w-4" />} label="+36 30 180 5589" href="tel:+36301805589" />
               <ContactRow icon={<Globe className="h-4 w-4" />} label="Website" href="/" />
-              <ContactRow icon={<Instagram className="h-4 w-4" />} label="Instagram" href="https://instagram.com/" />
-              <ContactRow icon={<Facebook className="h-4 w-4" />} label="Facebook" href="https://facebook.com/" />
-              <ContactRow icon={<Music2 className="h-4 w-4" />} label="TikTok" href="https://tiktok.com/" />
+              <ContactRow icon={<Instagram className="h-4 w-4" />} label="Instagram" href="https://www.instagram.com/_dotti_poleanddance" />
+              <ContactRow icon={<Facebook className="h-4 w-4" />} label="Facebook" href="https://www.facebook.com/share/19YCdHhhcJ/" />
+              <ContactRow icon={<Music2 className="h-4 w-4" />} label="TikTok" href="https://www.tiktok.com/@dorottya.23" />
             </ul>
             <p className="mt-12 text-[0.62rem] tracking-[0.24em] uppercase text-kit-muted">
               Based in Larnaca, Cyprus · Available internationally
