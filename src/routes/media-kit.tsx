@@ -185,6 +185,32 @@ function MediaKit() {
               </ul>
               <p className="mt-6 text-xs text-kit-muted">Top Reels markets: Italy 10%, Argentina 7.8%, Poland 7.2%, Germany 7.1%, France 6.4%.</p>
             </Reveal>
+
+            <Reveal>
+              <h3 className="text-[0.66rem] tracking-[0.3em] uppercase text-kit-muted">Top countries · Facebook audience</h3>
+              <ul className="mt-5 space-y-3">
+                {[["United States", "19.1%"], ["Mexico", "12.3%"], ["France", "7.5%"], ["Other", "61.4%"]].map(([c, v]) => (
+                  <li key={c} className="flex items-center justify-between gap-6 border-b border-kit-line/50 pb-3">
+                    <span className="font-serif text-lg">{c}</span>
+                    <span className="font-serif text-lg text-gold">{v}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal>
+              <h3 className="text-[0.66rem] tracking-[0.3em] uppercase text-kit-muted">Age · Facebook audience</h3>
+              <ul className="mt-5 space-y-3">
+                {[["25–34", 29.4], ["35–44", 36.5], ["45–54", 19.1], ["Other", 15.0]].map(([a, v]) => (
+                  <li key={a as string} className="grid grid-cols-[4rem_1fr_3.5rem] items-center gap-4 text-sm">
+                    <span className="text-kit-muted">{a}</span>
+                    <span className="h-1 bg-kit-line/50"><span className="block h-full bg-gold" style={{ width: `${((v as number) / 36.5) * 100}%` }} /></span>
+                    <span className="text-right">{v}%</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-6 text-xs text-kit-muted">92.1% of the Facebook audience are not yet followers — reach well beyond the existing community.</p>
+            </Reveal>
           </div>
         </div>
       </Section>
