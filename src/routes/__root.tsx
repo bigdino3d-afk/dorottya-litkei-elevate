@@ -134,7 +134,9 @@ function RootComponent() {
         <main className="flex-1">
           <Outlet />
         </main>
-        <SiteFooter />
+        <div className={pathname === "/media-kit" ? "bg-kit-black" : undefined}>
+          <SiteFooter />
+        </div>
         <FloatingBook />
       </div>
     </QueryClientProvider>
