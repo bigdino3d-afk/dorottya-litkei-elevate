@@ -1,14 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { Instagram, Facebook, Music2, Globe, Mail, Phone } from "lucide-react";
-import stage from "@/assets/mk-stage-pole.jpg.asset.json";
-import silhouette from "@/assets/mk-silhouette.jpg.asset.json";
-import studioBw from "@/assets/mk-studio-bw.webp.asset.json";
-import golden from "@/assets/mk-golden-pole.jpg.asset.json";
-import floorBw from "@/assets/mk-floor-bw.webp.asset.json";
-import sunset from "@/assets/mk-sunset.jpg.asset.json";
-import daylight from "@/assets/mk-daylight-studio.jpeg.asset.json";
-import competition from "@/assets/mk-competition.jpg.asset.json";
+import stage from "@/assets/stage.jpg";
+import silhouette from "@/assets/g4.jpg";
+import studioBw from "@/assets/g2.jpg";
+import golden from "@/assets/g3.jpg";
+import floorBw from "@/assets/g1.jpg";
+import sunset from "@/assets/grip.jpg";
+import daylight from "@/assets/studio.jpg";
+import competition from "@/assets/hero.jpg";
 
 export const Route = createFileRoute("/media-kit")({
   head: () => ({
@@ -54,7 +54,7 @@ function MediaKit() {
           </div>
         </div>
         <div className="relative min-h-[60svh] lg:min-h-full">
-          <img src={stage.url} alt="Dorottya Litkei competing on stage at Pole Artistic Hungary" className="absolute inset-0 h-full w-full object-cover" />
+          <img src={stage} alt="Dorottya Litkei competing on stage at Pole Artistic Hungary" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-kit-black via-kit-black/20 to-transparent lg:bg-gradient-to-r" />
         </div>
       </section>
@@ -85,7 +85,7 @@ function MediaKit() {
             </div>
           </Reveal>
           <Reveal className="relative aspect-[4/5]">
-            <img src={studioBw.url} alt="Black and white studio portrait of Dorottya Litkei in a lunge" className="h-full w-full object-cover" loading="lazy" />
+            <img src={studioBw} alt="Black and white studio portrait of Dorottya Litkei in a lunge" className="h-full w-full object-cover" loading="lazy" />
           </Reveal>
         </div>
       </Section>
@@ -94,7 +94,7 @@ function MediaKit() {
       <Section id="athlete" label="Athlete & Coach" surface>
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <Reveal className="relative aspect-[4/3] order-last lg:order-first overflow-hidden">
-            <img src={competition.url} alt="Dorottya Litkei mid-routine at a national pole sport championship" className="h-full w-full object-cover object-center" loading="lazy" />
+            <img src={competition} alt="Dorottya Litkei mid-routine at a national pole sport championship" className="h-full w-full object-cover object-center" loading="lazy" />
           </Reveal>
           <Reveal>
             <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-tight">Credentials</h2>
@@ -148,7 +148,7 @@ function MediaKit() {
               international reach: 94.9% of Reels viewers are not yet followers.
             </p>
             <div className="mt-10 relative aspect-[4/3]">
-              <img src={sunset.url} alt="Dorottya Litkei training on a seaside pole at sunset" className="h-full w-full object-cover" loading="lazy" />
+              <img src={sunset} alt="Dorottya Litkei performing a strength hold in the studio" className="h-full w-full object-cover" loading="lazy" />
             </div>
           </Reveal>
 
@@ -232,9 +232,9 @@ function MediaKit() {
             </div>
           </Reveal>
           <Reveal className="grid grid-cols-2 gap-4">
-            <img src={golden.url} alt="Dorottya Litkei posing on a gold pole at night" className="aspect-[3/4] w-full object-cover" loading="lazy" />
-            <img src={floorBw.url} alt="Black and white floor work portrait" className="aspect-[3/4] w-full object-cover mt-10" loading="lazy" />
-            <img src={daylight.url} alt="Daylight studio training with a high vertical split" className="aspect-[4/3] w-full object-cover col-span-2" loading="lazy" />
+            <img src={golden} alt="Dorottya Litkei performing on stage" className="aspect-[3/4] w-full object-cover" loading="lazy" />
+            <img src={floorBw} alt="Dorottya Litkei training in a bright pole studio" className="aspect-[3/4] w-full object-cover mt-10" loading="lazy" />
+            <img src={daylight} alt="Daylight pole studio training" className="aspect-[4/3] w-full object-cover col-span-2" loading="lazy" />
           </Reveal>
         </div>
       </Section>
@@ -272,7 +272,7 @@ function MediaKit() {
       <section id="contact" className="relative">
         <div className="relative grid lg:grid-cols-2">
           <div className="relative min-h-[50svh]">
-            <img src={silhouette.url} alt="Silhouette of Dorottya Litkei on a pole against a lit window" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+            <img src={silhouette} alt="Dorottya Litkei posing beside a pole in warm studio light" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-kit-black via-transparent to-kit-black/40" />
           </div>
           <div className="px-6 py-20 md:px-12 lg:px-16 lg:py-28">
