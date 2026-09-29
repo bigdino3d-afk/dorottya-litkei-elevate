@@ -93,8 +93,8 @@ function MediaKit() {
       {/* ATHLETE & COACH */}
       <Section id="athlete" label="Athlete & Coach" surface>
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-          <Reveal className="relative aspect-[3/4] order-last lg:order-first">
-            <img src={competition.url} alt="Dorottya Litkei mid-routine at a national pole sport championship" className="h-full w-full object-cover" loading="lazy" />
+          <Reveal className="relative aspect-[4/3] order-last lg:order-first overflow-hidden">
+            <img src={competition.url} alt="Dorottya Litkei mid-routine at a national pole sport championship" className="h-full w-full object-cover object-center" loading="lazy" />
           </Reveal>
           <Reveal>
             <h2 className="font-serif text-[clamp(2rem,4vw,3.5rem)] leading-tight">Credentials</h2>
