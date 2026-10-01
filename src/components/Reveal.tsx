@@ -17,14 +17,18 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (typeof IntersectionObserver === "undefined") { setShown(true); return; }
+    // threshold 0: tall blocks (long articles) would never reach a ratio on small phones
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) if (e.isIntersecting) { setShown(true); io.disconnect(); }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" },
     );
     io.observe(el);
-    return () => io.disconnect();
+    // Safety net: never leave content hidden
+    const t = window.setTimeout(() => setShown(true), 2500);
+    return () => { io.disconnect(); window.clearTimeout(t); };
   }, []);
 
   return (
