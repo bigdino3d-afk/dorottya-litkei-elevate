@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
+import origo1 from "@/assets/origo-wc-1.webp";
+import origo2 from "@/assets/origo-wc-2.webp";
 
 export const Route = createFileRoute("/media")({
   head: () => ({
@@ -40,6 +42,135 @@ function Media() {
             </p>
           </Reveal>
         </div>
+      </section>
+
+      <section className="container-luxe py-20 md:py-28 border-b border-border">
+        <Reveal className="max-w-2xl mb-12">
+          <p className="eyebrow">
+            <span className="gold-line mr-4 align-middle" />World Championship
+          </p>
+          <h2 className="mt-6 font-serif text-4xl md:text-5xl leading-tight">
+            The standing ovation of the Budaörs World Championship.
+          </h2>
+          <p className="mt-6 text-sm tracking-[0.22em] uppercase text-muted-foreground">
+            Origo · 14 December 2025
+          </p>
+        </Reveal>
+
+        <article className="mx-auto max-w-3xl font-serif text-lg md:text-xl leading-[1.75] text-foreground/90 space-y-6">
+          <p className="italic text-muted-foreground">
+            Dorottya Litkei went all in. With black make-up and Balkan music she
+            built a performance that spellbound the audience — and then, because
+            of the per-nation quota rule, still missed out on the final.
+          </p>
+          <p>
+            Dorottya Litkei's routine earned perhaps the biggest applause of
+            Saturday's competition day at the Pole Sport World Championship in
+            Budaörs. Performed in black make-up to characterful music, the
+            extremely intense choreography was at once provocative and
+            liberating. Many spectators said it sent shivers down their spine,
+            and admiration was written on every face.
+          </p>
+
+          <figure className="not-italic">
+            <img src={origo1} alt="Dorottya Litkei performing at the 2025 Pole Sport World Championship in Budaörs" loading="lazy" className="w-full h-auto" />
+            <figcaption className="mt-3 font-sans text-xs tracking-[0.18em] uppercase text-muted-foreground">
+              One of the most striking performances of the championship · Photo: MALESZ
+            </figcaption>
+          </figure>
+
+          <h3 className="font-serif text-2xl md:text-3xl text-gold pt-6">A storm of applause</h3>
+          <p>
+            "The idea was born in the summer, when I was looking for music and
+            definitely wanted to break with my previous style. I wanted to enjoy
+            my choreographies more. I felt this was truly me — this music could
+            be authentic to me, and through it I found my roots even more," said
+            Dorottya.
+          </p>
+          <p>
+            Her earlier style drew very different reactions, from her and from
+            the audience alike. "It wasn't like this. People usually watched in
+            total silence, nobody clapped."
+          </p>
+          <blockquote className="border-l-2 border-gold pl-6 italic text-foreground">
+            "I felt I definitely needed a change, something with more punch. I
+            don't really like monotony — on stage or in private life. I wanted
+            to perform something more joyful."
+          </blockquote>
+          <p>
+            She says she found her roots — but what does she mean? "Romani
+            blood. I grew up in Budapest's ninth district, and as a child many
+            of my friends were Roma. I felt I could identify with their culture
+            and their lives, and I felt there must be one or two among my
+            ancestors too. Is it a fact? Most likely yes — but you can't see it
+            on me: my skin is fair and my eyes are blue."
+          </p>
+
+          <figure className="not-italic">
+            <div className="mx-auto w-full max-w-[320px] aspect-[9/16] bg-cream">
+              <iframe
+                src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Flevegosportszovetseg%2Fvideos%2F1406129357861475%2F&show_text=0&width=320"
+                title="Dorottya Litkei — World Championship performance video"
+                className="w-full h-full border-0"
+                loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+            <figcaption className="mt-3 text-center font-sans text-xs tracking-[0.18em] uppercase text-muted-foreground">
+              Video: Hungarian Aerial Sports Federation ·{" "}
+              <a href="https://www.facebook.com/levegosportszovetseg/videos/1406129357861475/" target="_blank" rel="noopener noreferrer" className="text-gold link-underline">
+                Watch on Facebook
+              </a>
+            </figcaption>
+          </figure>
+
+          <p>
+            She didn't need to explain the change: the score spoke for her.
+            "This was the best score of my life so far at a world competition —
+            I was surprised myself."
+          </p>
+          <p>
+            Dorottya made the top ten, which in principle would have meant a
+            place in the final. But under the rules a maximum of two athletes
+            per nation may advance, and two Hungarians finished ahead of her.
+          </p>
+          <p>
+            When the scores came out, Dorottya celebrated anyway.
+          </p>
+          <blockquote className="border-l-2 border-gold pl-6 italic text-foreground">
+            "People aren't used to someone daring to be themselves as a
+            Hungarian. This is the path I want to follow — to own who I am as
+            fully as possible, no matter who likes it or not. That's how it is."
+          </blockquote>
+
+          <figure className="not-italic">
+            <img src={origo2} alt="Dorottya Litkei on stage at the World Championship" loading="lazy" className="w-full h-auto" />
+            <figcaption className="mt-3 font-sans text-xs tracking-[0.18em] uppercase text-muted-foreground">
+              Photo: MALESZ
+            </figcaption>
+          </figure>
+
+          <p>
+            In her view the story goes beyond a result. "We Hungarians are very
+            critical of each other. There's so much judgment, expectation and
+            pressure to conform, and it's very hard to break out of that. But
+            it's worth it if you can be yourself. Because there will always be
+            people beside you and behind you who accept you as you are — and
+            nothing is more important than that."
+          </p>
+          <blockquote className="border-l-2 border-gold pl-6 italic text-foreground">
+            "A good result is welcome, but it doesn't define me."
+          </blockquote>
+
+          <p className="pt-8 text-sm tracking-[0.22em] uppercase text-muted-foreground not-italic">
+            Excerpt originally published in Hungarian on{" "}
+            <a href="https://www.origo.hu/sport/sport-egyeni/2025/12/rudsport-legtorna-vilagbajnoksag-budaors-nyilatkozatok" target="_blank" rel="noopener noreferrer" className="text-gold link-underline">
+              Origo
+            </a>
+            , 14 December 2025. Translated for reference.
+          </p>
+        </article>
       </section>
 
       <section className="container-luxe py-20 md:py-28">
