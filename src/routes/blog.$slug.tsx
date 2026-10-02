@@ -24,7 +24,6 @@ export const Route = createFileRoute("/blog/$slug")({
   }),
   component: PostPage,
   errorComponent: PostError,
-  notFoundComponent: PostMissing,
 });
 
 function PostPage() {
