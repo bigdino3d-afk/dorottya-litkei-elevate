@@ -248,6 +248,78 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value?: string
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      studio_access: {
+        Row: {
+          asset_ids: string[]
+          categories: string[]
+          code_hash: string
+          contact_email: string | null
+          contact_name: string | null
+          created_at: string
+          expires_at: string | null
+          id: string
+          last_opened_at: string | null
+          notes: string | null
+          open_count: number
+          revoked_at: string | null
+          studio_name: string
+          token: string
+          updated_at: string
+        }
+        Insert: {
+          asset_ids?: string[]
+          categories?: string[]
+          code_hash: string
+          contact_email?: string | null
+          contact_name?: string | null
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          last_opened_at?: string | null
+          notes?: string | null
+          open_count?: number
+          revoked_at?: string | null
+          studio_name: string
+          token: string
+          updated_at?: string
+        }
+        Update: {
+          asset_ids?: string[]
+          categories?: string[]
+          code_hash?: string
+          contact_email?: string | null
+          contact_name?: string | null
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          last_opened_at?: string | null
+          notes?: string | null
+          open_count?: number
+          revoked_at?: string | null
+          studio_name?: string
+          token?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       testimonials: {
         Row: {
           created_at: string
@@ -347,17 +419,324 @@ export type Database = {
         }
         Relationships: []
       }
+      workshop_assets: {
+        Row: {
+          asset_type: string
+          category: string
+          created_at: string
+          description: string | null
+          file_name: string | null
+          height: number | null
+          id: string
+          instructions: string | null
+          language: string
+          mime_type: string | null
+          preview_path: string | null
+          published: boolean
+          size_bytes: number | null
+          sort_order: number
+          storage_path: string | null
+          text_content: string | null
+          title: string
+          updated_at: string
+          visibility: string
+          width: number | null
+          workshop_id: string | null
+        }
+        Insert: {
+          asset_type?: string
+          category?: string
+          created_at?: string
+          description?: string | null
+          file_name?: string | null
+          height?: number | null
+          id?: string
+          instructions?: string | null
+          language?: string
+          mime_type?: string | null
+          preview_path?: string | null
+          published?: boolean
+          size_bytes?: number | null
+          sort_order?: number
+          storage_path?: string | null
+          text_content?: string | null
+          title: string
+          updated_at?: string
+          visibility?: string
+          width?: number | null
+          workshop_id?: string | null
+        }
+        Update: {
+          asset_type?: string
+          category?: string
+          created_at?: string
+          description?: string | null
+          file_name?: string | null
+          height?: number | null
+          id?: string
+          instructions?: string | null
+          language?: string
+          mime_type?: string | null
+          preview_path?: string | null
+          published?: boolean
+          size_bytes?: number | null
+          sort_order?: number
+          storage_path?: string | null
+          text_content?: string | null
+          title?: string
+          updated_at?: string
+          visibility?: string
+          width?: number | null
+          workshop_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workshop_assets_workshop_id_fkey"
+            columns: ["workshop_id"]
+            isOneToOne: false
+            referencedRelation: "workshops"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workshop_inquiries: {
+        Row: {
+          contact_name: string
+          created_at: string
+          email: string
+          emailed: boolean
+          id: string
+          message: string | null
+          page_slug: string | null
+          participants: string | null
+          phone: string | null
+          preferred_dates: string | null
+          status: string
+          studio_name: string
+          workshop_type: string
+        }
+        Insert: {
+          contact_name: string
+          created_at?: string
+          email: string
+          emailed?: boolean
+          id?: string
+          message?: string | null
+          page_slug?: string | null
+          participants?: string | null
+          phone?: string | null
+          preferred_dates?: string | null
+          status?: string
+          studio_name: string
+          workshop_type: string
+        }
+        Update: {
+          contact_name?: string
+          created_at?: string
+          email?: string
+          emailed?: boolean
+          id?: string
+          message?: string | null
+          page_slug?: string | null
+          participants?: string | null
+          phone?: string | null
+          preferred_dates?: string | null
+          status?: string
+          studio_name?: string
+          workshop_type?: string
+        }
+        Relationships: []
+      }
+      workshop_pages: {
+        Row: {
+          city: string
+          country: string
+          created_at: string
+          credentials: Json
+          currency: string
+          headline: string | null
+          hero_eyebrow: string | null
+          hosting_heading: string | null
+          hosting_text: string | null
+          id: string
+          instructor_bio: string | null
+          instructor_heading: string | null
+          intro: string | null
+          languages: string[]
+          locale: string
+          slug: string
+          status: string
+          timezone: string
+          translations: Json
+          updated_at: string
+        }
+        Insert: {
+          city?: string
+          country?: string
+          created_at?: string
+          credentials?: Json
+          currency?: string
+          headline?: string | null
+          hero_eyebrow?: string | null
+          hosting_heading?: string | null
+          hosting_text?: string | null
+          id?: string
+          instructor_bio?: string | null
+          instructor_heading?: string | null
+          intro?: string | null
+          languages?: string[]
+          locale?: string
+          slug: string
+          status?: string
+          timezone?: string
+          translations?: Json
+          updated_at?: string
+        }
+        Update: {
+          city?: string
+          country?: string
+          created_at?: string
+          credentials?: Json
+          currency?: string
+          headline?: string | null
+          hero_eyebrow?: string | null
+          hosting_heading?: string | null
+          hosting_text?: string | null
+          id?: string
+          instructor_bio?: string | null
+          instructor_heading?: string | null
+          intro?: string | null
+          languages?: string[]
+          locale?: string
+          slug?: string
+          status?: string
+          timezone?: string
+          translations?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      workshops: {
+        Row: {
+          booking_deadline: string | null
+          booking_open: boolean
+          booking_url: string | null
+          capacity: number | null
+          category: string
+          contact_email: string | null
+          created_at: string
+          currency: string
+          dates: string | null
+          description: string | null
+          duration: string | null
+          id: string
+          learning_objectives: string | null
+          location: string | null
+          page_id: string | null
+          prerequisites: string | null
+          price_amount: number | null
+          price_note: string | null
+          published_fields: string[]
+          requirements: string | null
+          skill_level: string | null
+          sort_order: number
+          status: string
+          tagline: string | null
+          title: string
+          translations: Json
+          updated_at: string
+          venue: string | null
+          video_url: string | null
+        }
+        Insert: {
+          booking_deadline?: string | null
+          booking_open?: boolean
+          booking_url?: string | null
+          capacity?: number | null
+          category?: string
+          contact_email?: string | null
+          created_at?: string
+          currency?: string
+          dates?: string | null
+          description?: string | null
+          duration?: string | null
+          id?: string
+          learning_objectives?: string | null
+          location?: string | null
+          page_id?: string | null
+          prerequisites?: string | null
+          price_amount?: number | null
+          price_note?: string | null
+          published_fields?: string[]
+          requirements?: string | null
+          skill_level?: string | null
+          sort_order?: number
+          status?: string
+          tagline?: string | null
+          title: string
+          translations?: Json
+          updated_at?: string
+          venue?: string | null
+          video_url?: string | null
+        }
+        Update: {
+          booking_deadline?: string | null
+          booking_open?: boolean
+          booking_url?: string | null
+          capacity?: number | null
+          category?: string
+          contact_email?: string | null
+          created_at?: string
+          currency?: string
+          dates?: string | null
+          description?: string | null
+          duration?: string | null
+          id?: string
+          learning_objectives?: string | null
+          location?: string | null
+          page_id?: string | null
+          prerequisites?: string | null
+          price_amount?: number | null
+          price_note?: string | null
+          published_fields?: string[]
+          requirements?: string | null
+          skill_level?: string | null
+          sort_order?: number
+          status?: string
+          tagline?: string | null
+          title?: string
+          translations?: Json
+          updated_at?: string
+          venue?: string | null
+          video_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "workshops_page_id_fkey"
+            columns: ["page_id"]
+            isOneToOne: false
+            referencedRelation: "workshop_pages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
+      get_public_workshop_page: { Args: { _slug: string }; Returns: Json }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
           _user_id: string
         }
         Returns: boolean
+      }
+      is_public_asset_object: { Args: { _name: string }; Returns: boolean }
+      workshop_public_json: {
+        Args: { w: Database["public"]["Tables"]["workshops"]["Row"] }
+        Returns: Json
       }
     }
     Enums: {
