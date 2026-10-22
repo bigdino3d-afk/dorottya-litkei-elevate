@@ -16,6 +16,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { FloatingBook } from "../components/FloatingBook";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
@@ -126,7 +127,8 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  const transparentHeader = pathname === "/" || pathname === "/media-kit";
+  const isWorkshop = pathname.startsWith("/workshops/");
+  const transparentHeader = pathname === "/" || pathname === "/media-kit" || isWorkshop;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -135,10 +137,11 @@ function RootComponent() {
         <main className="flex-1">
           <Outlet />
         </main>
-        <div className={pathname === "/media-kit" ? "bg-kit-black" : undefined}>
+        <div className={pathname === "/media-kit" ? "bg-kit-black" : isWorkshop || pathname === "/studio-kit" ? "bg-ink" : undefined}>
           <SiteFooter />
         </div>
         <FloatingBook />
+        <Toaster position="top-center" />
       </div>
     </QueryClientProvider>
   );
