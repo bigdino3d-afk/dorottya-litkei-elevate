@@ -34,6 +34,8 @@ import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authe
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
 import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as WorkshopsIndexRouteImport } from './routes/workshops.index'
+import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -162,6 +164,16 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => BlogRoute,
 } as any)
+const WorkshopsIndexRoute = WorkshopsIndexRouteImport.update({
+  id: '/workshops/',
+  path: '/workshops/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkshopsSlugRoute = WorkshopsSlugRouteImport.update({
+  id: '/workshops/$slug',
+  path: '/workshops/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -188,6 +200,8 @@ export interface FileRoutesByFullPath {
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/workshops/$slug': typeof WorkshopsSlugRoute
+  '/workshops/': typeof WorkshopsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -214,6 +228,8 @@ export interface FileRoutesByTo {
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/workshops/$slug': typeof WorkshopsSlugRoute
+  '/workshops': typeof WorkshopsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -242,6 +258,8 @@ export interface FileRoutesById {
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/workshops/$slug': typeof WorkshopsSlugRoute
+  '/workshops/': typeof WorkshopsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -270,6 +288,8 @@ export interface FileRouteTypes {
     | '/manage-projects'
     | '/manage-videos'
     | '/blog/$slug'
+    | '/workshops/$slug'
+    | '/workshops/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -296,6 +316,8 @@ export interface FileRouteTypes {
     | '/manage-projects'
     | '/manage-videos'
     | '/blog/$slug'
+    | '/workshops/$slug'
+    | '/workshops'
   id:
     | '__root__'
     | '/'
@@ -323,6 +345,8 @@ export interface FileRouteTypes {
     | '/_authenticated/manage-projects'
     | '/_authenticated/manage-videos'
     | '/blog/$slug'
+    | '/workshops/$slug'
+    | '/workshops/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -346,6 +370,8 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
   VideoClassesRoute: typeof VideoClassesRoute
+  WorkshopsSlugRoute: typeof WorkshopsSlugRoute
+  WorkshopsIndexRoute: typeof WorkshopsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -525,6 +551,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof BlogRoute
     }
+    '/workshops/': {
+      id: '/workshops/'
+      path: '/workshops'
+      fullPath: '/workshops/'
+      preLoaderRoute: typeof WorkshopsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workshops/$slug': {
+      id: '/workshops/$slug'
+      path: '/workshops/$slug'
+      fullPath: '/workshops/$slug'
+      preLoaderRoute: typeof WorkshopsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -576,6 +616,8 @@ const rootRouteChildren: RootRouteChildren = {
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
   VideoClassesRoute: VideoClassesRoute,
+  WorkshopsSlugRoute: WorkshopsSlugRoute,
+  WorkshopsIndexRoute: WorkshopsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
