@@ -34,6 +34,7 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authenticated/manage-calendar'
 import { Route as AuthenticatedManageKitRouteImport } from './routes/_authenticated/manage-kit'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
+import { Route as AuthenticatedManageStudiosRouteImport } from './routes/_authenticated/manage-studios'
 import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
 import { Route as AuthenticatedManageWorkshopsRouteImport } from './routes/_authenticated/manage-workshops'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -167,6 +168,12 @@ const AuthenticatedManageProjectsRoute =
     path: '/manage-projects',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedManageStudiosRoute =
+  AuthenticatedManageStudiosRouteImport.update({
+    id: '/manage-studios',
+    path: '/manage-studios',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedManageVideosRoute =
   AuthenticatedManageVideosRouteImport.update({
     id: '/manage-videos',
@@ -226,6 +233,7 @@ export interface FileRoutesByFullPath {
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-kit': typeof AuthenticatedManageKitRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-studios': typeof AuthenticatedManageStudiosRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -258,6 +266,7 @@ export interface FileRoutesByTo {
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-kit': typeof AuthenticatedManageKitRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-studios': typeof AuthenticatedManageStudiosRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -292,6 +301,7 @@ export interface FileRoutesById {
   '/_authenticated/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/_authenticated/manage-kit': typeof AuthenticatedManageKitRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/_authenticated/manage-studios': typeof AuthenticatedManageStudiosRoute
   '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
   '/_authenticated/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
@@ -326,6 +336,7 @@ export interface FileRouteTypes {
     | '/manage-calendar'
     | '/manage-kit'
     | '/manage-projects'
+    | '/manage-studios'
     | '/manage-videos'
     | '/manage-workshops'
     | '/blog/$slug'
@@ -358,6 +369,7 @@ export interface FileRouteTypes {
     | '/manage-calendar'
     | '/manage-kit'
     | '/manage-projects'
+    | '/manage-studios'
     | '/manage-videos'
     | '/manage-workshops'
     | '/blog/$slug'
@@ -391,6 +403,7 @@ export interface FileRouteTypes {
     | '/_authenticated/manage-calendar'
     | '/_authenticated/manage-kit'
     | '/_authenticated/manage-projects'
+    | '/_authenticated/manage-studios'
     | '/_authenticated/manage-videos'
     | '/_authenticated/manage-workshops'
     | '/blog/$slug'
@@ -602,6 +615,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedManageProjectsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manage-studios': {
+      id: '/_authenticated/manage-studios'
+      path: '/manage-studios'
+      fullPath: '/manage-studios'
+      preLoaderRoute: typeof AuthenticatedManageStudiosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/manage-videos': {
       id: '/_authenticated/manage-videos'
       path: '/manage-videos'
@@ -652,6 +672,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedManageCalendarRoute: typeof AuthenticatedManageCalendarRoute
   AuthenticatedManageKitRoute: typeof AuthenticatedManageKitRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
+  AuthenticatedManageStudiosRoute: typeof AuthenticatedManageStudiosRoute
   AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
   AuthenticatedManageWorkshopsRoute: typeof AuthenticatedManageWorkshopsRoute
   AuthenticatedWorkshopPreviewSlugRoute: typeof AuthenticatedWorkshopPreviewSlugRoute
@@ -662,6 +683,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedManageCalendarRoute: AuthenticatedManageCalendarRoute,
   AuthenticatedManageKitRoute: AuthenticatedManageKitRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
+  AuthenticatedManageStudiosRoute: AuthenticatedManageStudiosRoute,
   AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
   AuthenticatedManageWorkshopsRoute: AuthenticatedManageWorkshopsRoute,
   AuthenticatedWorkshopPreviewSlugRoute: AuthenticatedWorkshopPreviewSlugRoute,
