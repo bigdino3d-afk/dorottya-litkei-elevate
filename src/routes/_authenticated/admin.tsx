@@ -141,6 +141,9 @@ function AdminPage() {
               <Link to="/manage-projects" className="text-muted-foreground hover:text-gold">Projects</Link>
               <Link to="/manage-videos" className="text-muted-foreground hover:text-gold">Videos</Link>
               <Link to="/manage-calendar" className="text-muted-foreground hover:text-gold">Calendar</Link>
+              <Link to="/manage-workshops" className="text-muted-foreground hover:text-gold">Workshops</Link>
+              <Link to="/manage-kit" className="text-muted-foreground hover:text-gold">Marketing Kit</Link>
+              <Link to="/manage-studios" className="text-muted-foreground hover:text-gold">Studios</Link>
             </div>
           </div>
 

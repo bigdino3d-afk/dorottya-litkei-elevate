@@ -31,6 +31,8 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow text-white/50 mb-5">Studio</p>
             <ul className="space-y-3 text-sm">
+              <li><Link to="/workshops/$slug" params={{ slug: "athens" }} className="link-underline">Athens Workshops</Link></li>
+              <li><Link to="/studio-kit" className="link-underline">Studio Marketing Kit</Link></li>
               <li><Link to="/projects" className="link-underline">Projects</Link></li>
               <li><Link to="/video-classes" className="link-underline">Video Classes</Link></li>
               <li><Link to="/media-kit" className="link-underline">Media Kit</Link></li>

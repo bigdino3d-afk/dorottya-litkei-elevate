@@ -26,16 +26,21 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as StudioKitRouteImport } from './routes/studio-kit'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as VideoClassesRouteImport } from './routes/video-classes'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authenticated/manage-calendar'
+import { Route as AuthenticatedManageKitRouteImport } from './routes/_authenticated/manage-kit'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
+import { Route as AuthenticatedManageStudiosRouteImport } from './routes/_authenticated/manage-studios'
 import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
+import { Route as AuthenticatedManageWorkshopsRouteImport } from './routes/_authenticated/manage-workshops'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as WorkshopsIndexRouteImport } from './routes/workshops.index'
 import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
+import { Route as AuthenticatedWorkshopPreviewSlugRouteImport } from './routes/_authenticated/workshop-preview.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -121,6 +126,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudioKitRoute = StudioKitRouteImport.update({
+  id: '/studio-kit',
+  path: '/studio-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -147,16 +157,33 @@ const AuthenticatedManageCalendarRoute =
     path: '/manage-calendar',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedManageKitRoute = AuthenticatedManageKitRouteImport.update({
+  id: '/manage-kit',
+  path: '/manage-kit',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedManageProjectsRoute =
   AuthenticatedManageProjectsRouteImport.update({
     id: '/manage-projects',
     path: '/manage-projects',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedManageStudiosRoute =
+  AuthenticatedManageStudiosRouteImport.update({
+    id: '/manage-studios',
+    path: '/manage-studios',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedManageVideosRoute =
   AuthenticatedManageVideosRouteImport.update({
     id: '/manage-videos',
     path: '/manage-videos',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedManageWorkshopsRoute =
+  AuthenticatedManageWorkshopsRouteImport.update({
+    id: '/manage-workshops',
+    path: '/manage-workshops',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
@@ -174,6 +201,12 @@ const WorkshopsSlugRoute = WorkshopsSlugRouteImport.update({
   path: '/workshops/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedWorkshopPreviewSlugRoute =
+  AuthenticatedWorkshopPreviewSlugRouteImport.update({
+    id: '/workshop-preview/$slug',
+    path: '/workshop-preview/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -192,16 +225,21 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio-kit': typeof StudioKitRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
+  '/manage-kit': typeof AuthenticatedManageKitRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-studios': typeof AuthenticatedManageStudiosRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
+  '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/workshops/': typeof WorkshopsIndexRoute
+  '/workshop-preview/$slug': typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -220,16 +258,21 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio-kit': typeof StudioKitRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
+  '/manage-kit': typeof AuthenticatedManageKitRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/manage-studios': typeof AuthenticatedManageStudiosRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
+  '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/workshops': typeof WorkshopsIndexRoute
+  '/workshop-preview/$slug': typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -250,16 +293,21 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio-kit': typeof StudioKitRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/manage-calendar': typeof AuthenticatedManageCalendarRoute
+  '/_authenticated/manage-kit': typeof AuthenticatedManageKitRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
+  '/_authenticated/manage-studios': typeof AuthenticatedManageStudiosRoute
   '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
+  '/_authenticated/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/workshops/': typeof WorkshopsIndexRoute
+  '/_authenticated/workshop-preview/$slug': typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -280,16 +328,21 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/sitemap.xml'
+    | '/studio-kit'
     | '/terms'
     | '/testimonials'
     | '/video-classes'
     | '/admin'
     | '/manage-calendar'
+    | '/manage-kit'
     | '/manage-projects'
+    | '/manage-studios'
     | '/manage-videos'
+    | '/manage-workshops'
     | '/blog/$slug'
     | '/workshops/$slug'
     | '/workshops/'
+    | '/workshop-preview/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -308,16 +361,21 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/sitemap.xml'
+    | '/studio-kit'
     | '/terms'
     | '/testimonials'
     | '/video-classes'
     | '/admin'
     | '/manage-calendar'
+    | '/manage-kit'
     | '/manage-projects'
+    | '/manage-studios'
     | '/manage-videos'
+    | '/manage-workshops'
     | '/blog/$slug'
     | '/workshops/$slug'
     | '/workshops'
+    | '/workshop-preview/$slug'
   id:
     | '__root__'
     | '/'
@@ -337,16 +395,21 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/sitemap.xml'
+    | '/studio-kit'
     | '/terms'
     | '/testimonials'
     | '/video-classes'
     | '/_authenticated/admin'
     | '/_authenticated/manage-calendar'
+    | '/_authenticated/manage-kit'
     | '/_authenticated/manage-projects'
+    | '/_authenticated/manage-studios'
     | '/_authenticated/manage-videos'
+    | '/_authenticated/manage-workshops'
     | '/blog/$slug'
     | '/workshops/$slug'
     | '/workshops/'
+    | '/_authenticated/workshop-preview/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -367,6 +430,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StudioKitRoute: typeof StudioKitRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
   VideoClassesRoute: typeof VideoClassesRoute
@@ -495,6 +559,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/studio-kit': {
+      id: '/studio-kit'
+      path: '/studio-kit'
+      fullPath: '/studio-kit'
+      preLoaderRoute: typeof StudioKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -530,6 +601,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedManageCalendarRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manage-kit': {
+      id: '/_authenticated/manage-kit'
+      path: '/manage-kit'
+      fullPath: '/manage-kit'
+      preLoaderRoute: typeof AuthenticatedManageKitRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/manage-projects': {
       id: '/_authenticated/manage-projects'
       path: '/manage-projects'
@@ -537,11 +615,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedManageProjectsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manage-studios': {
+      id: '/_authenticated/manage-studios'
+      path: '/manage-studios'
+      fullPath: '/manage-studios'
+      preLoaderRoute: typeof AuthenticatedManageStudiosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/manage-videos': {
       id: '/_authenticated/manage-videos'
       path: '/manage-videos'
       fullPath: '/manage-videos'
       preLoaderRoute: typeof AuthenticatedManageVideosRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/manage-workshops': {
+      id: '/_authenticated/manage-workshops'
+      path: '/manage-workshops'
+      fullPath: '/manage-workshops'
+      preLoaderRoute: typeof AuthenticatedManageWorkshopsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/blog/$slug': {
@@ -565,21 +657,36 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkshopsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/workshop-preview/$slug': {
+      id: '/_authenticated/workshop-preview/$slug'
+      path: '/workshop-preview/$slug'
+      fullPath: '/workshop-preview/$slug'
+      preLoaderRoute: typeof AuthenticatedWorkshopPreviewSlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedManageCalendarRoute: typeof AuthenticatedManageCalendarRoute
+  AuthenticatedManageKitRoute: typeof AuthenticatedManageKitRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
+  AuthenticatedManageStudiosRoute: typeof AuthenticatedManageStudiosRoute
   AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
+  AuthenticatedManageWorkshopsRoute: typeof AuthenticatedManageWorkshopsRoute
+  AuthenticatedWorkshopPreviewSlugRoute: typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedManageCalendarRoute: AuthenticatedManageCalendarRoute,
+  AuthenticatedManageKitRoute: AuthenticatedManageKitRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
+  AuthenticatedManageStudiosRoute: AuthenticatedManageStudiosRoute,
   AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
+  AuthenticatedManageWorkshopsRoute: AuthenticatedManageWorkshopsRoute,
+  AuthenticatedWorkshopPreviewSlugRoute: AuthenticatedWorkshopPreviewSlugRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
@@ -613,6 +720,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StudioKitRoute: StudioKitRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
   VideoClassesRoute: VideoClassesRoute,
