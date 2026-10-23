@@ -6,6 +6,7 @@ const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
+  { to: "/workshops", label: "Workshops" },
   { to: "/achievements", label: "Achievements" },
   { to: "/gallery", label: "Gallery" },
   { to: "/testimonials", label: "Testimonials" },
@@ -51,7 +52,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           </span>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden xl:flex items-center gap-5 2xl:gap-7">
           {NAV.map((n) => (
             <Link
               key={n.to}
@@ -68,7 +69,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           <Link
             to="/booking"
             className={[
@@ -86,7 +87,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           className={[
-            "lg:hidden grid place-items-center h-10 w-10 rounded-full transition-colors",
+            "xl:hidden grid place-items-center h-10 w-10 rounded-full transition-colors",
             solid ? "text-foreground" : "text-white",
           ].join(" ")}
           aria-label="Toggle menu"
@@ -96,7 +97,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
       </div>
 
       {open && (
-        <div className="lg:hidden bg-background border-t border-border">
+        <div className="xl:hidden bg-background border-t border-border max-h-[calc(100svh-5rem)] overflow-y-auto">
           <div className="container-luxe py-6 flex flex-col gap-4">
             {NAV.map((n) => (
               <Link

@@ -133,6 +133,9 @@ function ManageVideos() {
               <Link to="/manage-projects" className="text-muted-foreground hover:text-gold">Projects</Link>
               <span className="text-gold">Videos</span>
               <Link to="/manage-calendar" className="text-muted-foreground hover:text-gold">Calendar</Link>
+              <Link to="/manage-workshops" className="text-muted-foreground hover:text-gold">Workshops</Link>
+              <Link to="/manage-kit" className="text-muted-foreground hover:text-gold">Marketing Kit</Link>
+              <Link to="/manage-studios" className="text-muted-foreground hover:text-gold">Studios</Link>
             </div>
           </div>
           <div className="flex items-center gap-3">

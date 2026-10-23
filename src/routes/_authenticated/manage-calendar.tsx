@@ -122,6 +122,9 @@ function ManageCalendar() {
               <Link to="/manage-projects" className="text-muted-foreground hover:text-gold">Projects</Link>
               <Link to="/manage-videos" className="text-muted-foreground hover:text-gold">Videos</Link>
               <span className="text-gold">Calendar</span>
+              <Link to="/manage-workshops" className="text-muted-foreground hover:text-gold">Workshops</Link>
+              <Link to="/manage-kit" className="text-muted-foreground hover:text-gold">Marketing Kit</Link>
+              <Link to="/manage-studios" className="text-muted-foreground hover:text-gold">Studios</Link>
             </div>
           </div>
           <button onClick={signOut} className="inline-flex shrink-0 items-center gap-2 h-11 px-5 border border-border eyebrow hover:border-gold hover:text-gold transition-colors">

@@ -32,6 +32,7 @@ import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as VideoClassesRouteImport } from './routes/video-classes'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authenticated/manage-calendar'
+import { Route as AuthenticatedManageKitRouteImport } from './routes/_authenticated/manage-kit'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
 import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
 import { Route as AuthenticatedManageWorkshopsRouteImport } from './routes/_authenticated/manage-workshops'
@@ -155,6 +156,11 @@ const AuthenticatedManageCalendarRoute =
     path: '/manage-calendar',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedManageKitRoute = AuthenticatedManageKitRouteImport.update({
+  id: '/manage-kit',
+  path: '/manage-kit',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedManageProjectsRoute =
   AuthenticatedManageProjectsRouteImport.update({
     id: '/manage-projects',
@@ -218,6 +224,7 @@ export interface FileRoutesByFullPath {
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
+  '/manage-kit': typeof AuthenticatedManageKitRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
@@ -249,6 +256,7 @@ export interface FileRoutesByTo {
   '/video-classes': typeof VideoClassesRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
+  '/manage-kit': typeof AuthenticatedManageKitRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
   '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
@@ -282,6 +290,7 @@ export interface FileRoutesById {
   '/video-classes': typeof VideoClassesRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/manage-calendar': typeof AuthenticatedManageCalendarRoute
+  '/_authenticated/manage-kit': typeof AuthenticatedManageKitRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
   '/_authenticated/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
@@ -315,6 +324,7 @@ export interface FileRouteTypes {
     | '/video-classes'
     | '/admin'
     | '/manage-calendar'
+    | '/manage-kit'
     | '/manage-projects'
     | '/manage-videos'
     | '/manage-workshops'
@@ -346,6 +356,7 @@ export interface FileRouteTypes {
     | '/video-classes'
     | '/admin'
     | '/manage-calendar'
+    | '/manage-kit'
     | '/manage-projects'
     | '/manage-videos'
     | '/manage-workshops'
@@ -378,6 +389,7 @@ export interface FileRouteTypes {
     | '/video-classes'
     | '/_authenticated/admin'
     | '/_authenticated/manage-calendar'
+    | '/_authenticated/manage-kit'
     | '/_authenticated/manage-projects'
     | '/_authenticated/manage-videos'
     | '/_authenticated/manage-workshops'
@@ -576,6 +588,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedManageCalendarRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manage-kit': {
+      id: '/_authenticated/manage-kit'
+      path: '/manage-kit'
+      fullPath: '/manage-kit'
+      preLoaderRoute: typeof AuthenticatedManageKitRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/manage-projects': {
       id: '/_authenticated/manage-projects'
       path: '/manage-projects'
@@ -631,6 +650,7 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
   AuthenticatedManageCalendarRoute: typeof AuthenticatedManageCalendarRoute
+  AuthenticatedManageKitRoute: typeof AuthenticatedManageKitRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
   AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
   AuthenticatedManageWorkshopsRoute: typeof AuthenticatedManageWorkshopsRoute
@@ -640,6 +660,7 @@ interface AuthenticatedRouteRouteChildren {
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
   AuthenticatedManageCalendarRoute: AuthenticatedManageCalendarRoute,
+  AuthenticatedManageKitRoute: AuthenticatedManageKitRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
   AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
   AuthenticatedManageWorkshopsRoute: AuthenticatedManageWorkshopsRoute,
