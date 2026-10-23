@@ -34,9 +34,11 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedManageCalendarRouteImport } from './routes/_authenticated/manage-calendar'
 import { Route as AuthenticatedManageProjectsRouteImport } from './routes/_authenticated/manage-projects'
 import { Route as AuthenticatedManageVideosRouteImport } from './routes/_authenticated/manage-videos'
+import { Route as AuthenticatedManageWorkshopsRouteImport } from './routes/_authenticated/manage-workshops'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 import { Route as WorkshopsIndexRouteImport } from './routes/workshops.index'
 import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
+import { Route as AuthenticatedWorkshopPreviewSlugRouteImport } from './routes/_authenticated/workshop-preview.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -165,6 +167,12 @@ const AuthenticatedManageVideosRoute =
     path: '/manage-videos',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedManageWorkshopsRoute =
+  AuthenticatedManageWorkshopsRouteImport.update({
+    id: '/manage-workshops',
+    path: '/manage-workshops',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
   id: '/$slug',
   path: '/$slug',
@@ -180,6 +188,12 @@ const WorkshopsSlugRoute = WorkshopsSlugRouteImport.update({
   path: '/workshops/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedWorkshopPreviewSlugRoute =
+  AuthenticatedWorkshopPreviewSlugRouteImport.update({
+    id: '/workshop-preview/$slug',
+    path: '/workshop-preview/$slug',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -206,9 +220,11 @@ export interface FileRoutesByFullPath {
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
+  '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/workshops/': typeof WorkshopsIndexRoute
+  '/workshop-preview/$slug': typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -235,9 +251,11 @@ export interface FileRoutesByTo {
   '/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/manage-videos': typeof AuthenticatedManageVideosRoute
+  '/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/workshops': typeof WorkshopsIndexRoute
+  '/workshop-preview/$slug': typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -266,9 +284,11 @@ export interface FileRoutesById {
   '/_authenticated/manage-calendar': typeof AuthenticatedManageCalendarRoute
   '/_authenticated/manage-projects': typeof AuthenticatedManageProjectsRoute
   '/_authenticated/manage-videos': typeof AuthenticatedManageVideosRoute
+  '/_authenticated/manage-workshops': typeof AuthenticatedManageWorkshopsRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/workshops/': typeof WorkshopsIndexRoute
+  '/_authenticated/workshop-preview/$slug': typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -297,9 +317,11 @@ export interface FileRouteTypes {
     | '/manage-calendar'
     | '/manage-projects'
     | '/manage-videos'
+    | '/manage-workshops'
     | '/blog/$slug'
     | '/workshops/$slug'
     | '/workshops/'
+    | '/workshop-preview/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -326,9 +348,11 @@ export interface FileRouteTypes {
     | '/manage-calendar'
     | '/manage-projects'
     | '/manage-videos'
+    | '/manage-workshops'
     | '/blog/$slug'
     | '/workshops/$slug'
     | '/workshops'
+    | '/workshop-preview/$slug'
   id:
     | '__root__'
     | '/'
@@ -356,9 +380,11 @@ export interface FileRouteTypes {
     | '/_authenticated/manage-calendar'
     | '/_authenticated/manage-projects'
     | '/_authenticated/manage-videos'
+    | '/_authenticated/manage-workshops'
     | '/blog/$slug'
     | '/workshops/$slug'
     | '/workshops/'
+    | '/_authenticated/workshop-preview/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -564,6 +590,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedManageVideosRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/manage-workshops': {
+      id: '/_authenticated/manage-workshops'
+      path: '/manage-workshops'
+      fullPath: '/manage-workshops'
+      preLoaderRoute: typeof AuthenticatedManageWorkshopsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/blog/$slug': {
       id: '/blog/$slug'
       path: '/$slug'
@@ -585,6 +618,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkshopsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/workshop-preview/$slug': {
+      id: '/_authenticated/workshop-preview/$slug'
+      path: '/workshop-preview/$slug'
+      fullPath: '/workshop-preview/$slug'
+      preLoaderRoute: typeof AuthenticatedWorkshopPreviewSlugRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
@@ -593,6 +633,8 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedManageCalendarRoute: typeof AuthenticatedManageCalendarRoute
   AuthenticatedManageProjectsRoute: typeof AuthenticatedManageProjectsRoute
   AuthenticatedManageVideosRoute: typeof AuthenticatedManageVideosRoute
+  AuthenticatedManageWorkshopsRoute: typeof AuthenticatedManageWorkshopsRoute
+  AuthenticatedWorkshopPreviewSlugRoute: typeof AuthenticatedWorkshopPreviewSlugRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -600,6 +642,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedManageCalendarRoute: AuthenticatedManageCalendarRoute,
   AuthenticatedManageProjectsRoute: AuthenticatedManageProjectsRoute,
   AuthenticatedManageVideosRoute: AuthenticatedManageVideosRoute,
+  AuthenticatedManageWorkshopsRoute: AuthenticatedManageWorkshopsRoute,
+  AuthenticatedWorkshopPreviewSlugRoute: AuthenticatedWorkshopPreviewSlugRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
