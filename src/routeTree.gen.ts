@@ -26,6 +26,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as StudioKitRouteImport } from './routes/studio-kit'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as VideoClassesRouteImport } from './routes/video-classes'
@@ -121,6 +122,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudioKitRoute = StudioKitRouteImport.update({
+  id: '/studio-kit',
+  path: '/studio-kit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
@@ -192,6 +198,7 @@ export interface FileRoutesByFullPath {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio-kit': typeof StudioKitRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
@@ -220,6 +227,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio-kit': typeof StudioKitRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
@@ -250,6 +258,7 @@ export interface FileRoutesById {
   '/projects': typeof ProjectsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/studio-kit': typeof StudioKitRoute
   '/terms': typeof TermsRoute
   '/testimonials': typeof TestimonialsRoute
   '/video-classes': typeof VideoClassesRoute
@@ -280,6 +289,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/sitemap.xml'
+    | '/studio-kit'
     | '/terms'
     | '/testimonials'
     | '/video-classes'
@@ -308,6 +318,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/sitemap.xml'
+    | '/studio-kit'
     | '/terms'
     | '/testimonials'
     | '/video-classes'
@@ -337,6 +348,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/services'
     | '/sitemap.xml'
+    | '/studio-kit'
     | '/terms'
     | '/testimonials'
     | '/video-classes'
@@ -367,6 +379,7 @@ export interface RootRouteChildren {
   ProjectsRoute: typeof ProjectsRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  StudioKitRoute: typeof StudioKitRoute
   TermsRoute: typeof TermsRoute
   TestimonialsRoute: typeof TestimonialsRoute
   VideoClassesRoute: typeof VideoClassesRoute
@@ -495,6 +508,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/studio-kit': {
+      id: '/studio-kit'
+      path: '/studio-kit'
+      fullPath: '/studio-kit'
+      preLoaderRoute: typeof StudioKitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/terms': {
       id: '/terms'
       path: '/terms'
@@ -613,6 +633,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsRoute: ProjectsRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  StudioKitRoute: StudioKitRoute,
   TermsRoute: TermsRoute,
   TestimonialsRoute: TestimonialsRoute,
   VideoClassesRoute: VideoClassesRoute,
