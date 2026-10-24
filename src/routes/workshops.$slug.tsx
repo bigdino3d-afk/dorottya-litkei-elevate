@@ -17,7 +17,7 @@ export const Route = createFileRoute("/workshops/$slug")({
     if (!loaderData) {
       return { meta: [{ title: "Workshop unavailable — Dorottya Litkei" }, { name: "robots", content: "noindex" }] };
     }
-    const city = loaderData.page.city || params.slug;
+    const city = (loaderData.page as unknown as LandingPage).city || params.slug;
     const title = `${city} Pole Workshops with European Champion Dorottya Litkei`;
     const description = `Acrobatic Pole Tricks and Spinning Pole workshops in ${city} with Dorottya Litkei — European Champion, six-time Hungarian Champion, international instructor and judge. Studios: host a workshop and get a ready-made marketing kit.`;
     const image = loaderData.origin ? `${loaderData.origin}${OG_IMAGE_PATH}` : null;
@@ -67,11 +67,12 @@ function WorkshopPage() {
   const data = Route.useLoaderData();
   const { lang = "en" } = Route.useSearch();
   const { slug } = Route.useParams();
-  const effective: Lang = lang === "el" && data.page.languages?.includes("el") ? "el" : "en";
+  const page = data.page as unknown as LandingPage;
+  const effective: Lang = lang === "el" && page.languages?.includes("el") ? "el" : "en";
   return (
     <WorkshopLanding
-      page={data.page as unknown as LandingPage}
-      workshops={data.workshops as LandingWorkshop[]}
+      page={page}
+      workshops={data.workshops as unknown as LandingWorkshop[]}
       assets={data.assets}
       lang={effective}
       langHref={(l) => (

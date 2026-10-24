@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Archive, Copy, Eye, EyeOff, Pencil, Plus, Trash2, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
+import type { Json, Tables } from "@/integrations/supabase/types";
 import { AdminShell, adminArea, adminBtn, adminField, adminGhost, adminIcon } from "@/components/admin/AdminShell";
 import { CATEGORY_LABEL, WORKSHOP_FIELDS } from "@/lib/workshop-content";
 
@@ -194,7 +194,7 @@ function PageEditor({ value, onChange, onSave, onCancel, saving }: { value: Page
   const tr = trOf(value.translations);
   const el = tr.el ?? {};
   const greek = value.languages.includes("el");
-  const setEl = (k: string, v: unknown) => onChange({ ...value, translations: { ...tr, el: { ...el, [k]: v } } });
+  const setEl = (k: string, v: unknown) => onChange({ ...value, translations: { ...tr, el: { ...el, [k]: v } } as Json });
 
   return (
     <div className="mt-10 max-w-4xl space-y-8">
@@ -256,7 +256,7 @@ function WorkshopEditor({ value, onChange, onSave, onCancel, saving, greek }: { 
   const tr = trOf(value.translations);
   const el = tr.el ?? {};
   const togglePub = (k: string, on: boolean) => onChange({ ...value, published_fields: on ? Array.from(new Set([...pub, k])) : pub.filter((x) => x !== k) });
-  const setEl = (k: string, v: string) => onChange({ ...value, translations: { ...tr, el: { ...el, [k]: v } } });
+  const setEl = (k: string, v: string) => onChange({ ...value, translations: { ...tr, el: { ...el, [k]: v } } as Json });
   const get = (k: string) => {
     const v = (value as Record<string, unknown>)[k];
     return v === null || v === undefined ? "" : String(v);

@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
-import { createClient } from "@supabase/supabase-js";
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
-import type { Database } from "@/integrations/supabase/types";
+import type { Database, Json } from "@/integrations/supabase/types";
 import { requireSupabaseAuth } from "@/integrations/supabase/auth-middleware";
 import {
   canStudioSeeAsset,
@@ -55,28 +55,9 @@ function requestOrigin(): string {
 
 // ---------- Public landing page ----------
 
-export type PublicWorkshop = Record<string, unknown> & {
-  id: string;
-  category: string;
-  title: string;
-  booking_open: boolean;
-  currency: string;
-  translations?: Record<string, Record<string, unknown>>;
-};
-
 export type PublicWorkshopPage = {
-  page: Record<string, unknown> & {
-    id: string;
-    slug: string;
-    city: string;
-    country: string;
-    credentials: string[];
-    languages: string[];
-    locale: string;
-    currency: string;
-    translations: Record<string, Record<string, unknown>>;
-  };
-  workshops: PublicWorkshop[];
+  page: Json;
+  workshops: Json[];
   assets: KitAsset[];
   origin: string;
 };
@@ -91,8 +72,8 @@ export const getWorkshopPage = createServerFn({ method: "GET" })
       throw new Error("The workshop page could not be loaded. Please try again shortly.");
     }
     if (!res) return null;
-    const parsed = res as unknown as Omit<PublicWorkshopPage, "assets" | "origin">;
-    const ids = parsed.workshops.map((w) => w.id);
+    const parsed = res as { page: Json; workshops: Json[] };
+    const ids = parsed.workshops.map((w) => (w as { id: string }).id);
     let assets: KitAsset[] = [];
     if (ids.length) {
       const { data: rows } = await supa
@@ -245,7 +226,7 @@ export const openStudioKit = createServerFn({ method: "POST" })
 
 // ---------- Admin: issue / reset studio access ----------
 
-async function assertAdmin(supabase: ReturnType<typeof createClient<Database>>, userId: string) {
+async function assertAdmin(supabase: SupabaseClient<Database>, userId: string) {
   const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: userId, _role: "admin" });
   if (!isAdmin) throw new Error("Forbidden: admin access required");
 }
