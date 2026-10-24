@@ -52,7 +52,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           </span>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-5 2xl:gap-7">
+        <nav className="hidden min-[1440px]:flex items-center gap-6">
           {NAV.map((n) => (
             <Link
               key={n.to}
@@ -69,7 +69,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           ))}
         </nav>
 
-        <div className="hidden xl:flex items-center gap-3">
+        <div className="hidden min-[1440px]:flex items-center gap-3">
           <Link
             to="/booking"
             className={[
@@ -87,7 +87,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
           type="button"
           onClick={() => setOpen((v) => !v)}
           className={[
-            "xl:hidden grid place-items-center h-10 w-10 rounded-full transition-colors",
+            "min-[1440px]:hidden grid place-items-center h-10 w-10 rounded-full transition-colors",
             solid ? "text-foreground" : "text-white",
           ].join(" ")}
           aria-label="Toggle menu"
@@ -97,7 +97,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean }) {
       </div>
 
       {open && (
-        <div className="xl:hidden bg-background border-t border-border max-h-[calc(100svh-5rem)] overflow-y-auto">
+        <div className="min-[1440px]:hidden bg-background border-t border-border max-h-[calc(100svh-5rem)] overflow-y-auto">
           <div className="container-luxe py-6 flex flex-col gap-4">
             {NAV.map((n) => (
               <Link

@@ -201,7 +201,7 @@ export function drawArtwork(canvas: HTMLCanvasElement, input: ArtworkInput, scal
   ];
   const labelSize = fs(landscape ? 11 : portrait ? 19 : 15);
   const valueSize = fs(landscape ? 17 : portrait ? 32 : 25);
-  const bottomLimit = H - pad - (input.logo || input.placeholders ? fs(landscape ? 70 : 120) : fs(30));
+  const bottomLimit = H - pad - fs(landscape ? 20 : 34) - (input.logo || input.placeholders ? fs(landscape ? 64 : 116) : 0);
   for (const [label, value, hint] of rows) {
     const v = value.trim();
     if (!v && !input.placeholders) continue;
@@ -222,11 +222,17 @@ export function drawArtwork(canvas: HTMLCanvasElement, input: ArtworkInput, scal
     y += valueSize * 0.55;
   }
 
-  // Logo slot
+  // Signature (bottom of the text column) and logo slot above it
+  const sigSize = fs(landscape ? 11 : 16);
+  const sigY = H - pad;
+  ctx.fillStyle = MUTED;
+  ctx.font = `500 ${sigSize}px Inter, sans-serif`;
+  spaced(ctx, "DOROTTYALITKEI.COM", textX, sigY, fs(3));
+
   const boxW = fs(landscape ? 130 : 220);
-  const boxH = fs(landscape ? 56 : 96);
+  const boxH = fs(landscape ? 50 : 90);
   const bx = textX;
-  const by = H - pad - boxH;
+  const by = sigY - sigSize - fs(landscape ? 12 : 22) - boxH;
   if (input.logo) {
     const r = Math.min(boxW / input.logo.naturalWidth, boxH / input.logo.naturalHeight);
     const lw = input.logo.naturalWidth * r;
@@ -242,14 +248,6 @@ export function drawArtwork(canvas: HTMLCanvasElement, input: ArtworkInput, scal
     ctx.font = `500 ${fs(landscape ? 11 : 16)}px Inter, sans-serif`;
     spaced(ctx, "STUDIO LOGO", bx + fs(16), by + boxH / 2 + fs(5), fs(3));
   }
-
-  // Signature
-  ctx.fillStyle = MUTED;
-  ctx.font = `500 ${fs(landscape ? 11 : 16)}px Inter, sans-serif`;
-  const sig = "DOROTTYALITKEI.COM";
-  const sigW = sig.length * (ctx.measureText("M").width * 0.78 + fs(3));
-  const sx = portrait || landscape ? W - pad - sigW : W * 0.5 - pad * 0.4 - sigW;
-  spaced(ctx, sig, Math.max(textX, sx), H - pad - fs(4), fs(3));
 }
 
 export function canvasToBlob(canvas: HTMLCanvasElement, type = "image/png", quality?: number): Promise<Blob> {

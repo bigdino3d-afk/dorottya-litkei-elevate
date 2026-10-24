@@ -169,7 +169,7 @@ export function ArtworkBuilder() {
         <p className="text-xs text-muted-foreground">Empty fields are left out of the downloaded artwork; the bracketed hints only appear in the preview.</p>
       </div>
 
-      <div className="lg:sticky lg:top-28 self-start">
+      <div className="order-first lg:order-none lg:sticky lg:top-28 self-start">
         <div className="bg-cream p-4 md:p-6 grid place-items-center">
           <canvas ref={canvasRef} className="max-w-full h-auto max-h-[78vh] shadow-luxe" style={{ aspectRatio: `${ARTWORK_FORMATS[format].w} / ${ARTWORK_FORMATS[format].h}` }} aria-label={`Preview of the ${ARTWORK_FORMATS[format].label} artwork`} role="img" />
         </div>

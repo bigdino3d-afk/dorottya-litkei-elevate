@@ -149,7 +149,7 @@ export function WorkshopLanding({ page, workshops, assets, lang, preview = false
           </div>
 
           <div className="order-1 lg:order-2">
-            <div className="relative mx-auto max-w-[460px]" style={{ aspectRatio: `${PHOTOS.hero.w} / ${PHOTOS.hero.h}` }}>
+            <div className="relative mx-auto max-w-[230px] sm:max-w-[320px] lg:max-w-[460px]" style={{ aspectRatio: `${PHOTOS.hero.w} / ${PHOTOS.hero.h}` }}>
               <img src={PHOTOS.hero.src} alt={PHOTOS.hero.alt} width={PHOTOS.hero.w} height={PHOTOS.hero.h} fetchPriority="high" className="h-full w-full object-contain" />
               <div className="absolute -bottom-4 -left-4 hidden md:block border border-gold/60 bg-ink/90 px-5 py-4">
                 <p className="eyebrow text-gold">{page.city}{page.country ? `, ${page.country}` : ""}</p>
