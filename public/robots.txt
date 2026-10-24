@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /studio-kit
+Disallow: /admin
+Disallow: /manage-
+Disallow: /workshop-preview/
+Disallow: /auth
