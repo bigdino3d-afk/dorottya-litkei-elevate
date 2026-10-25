@@ -19,8 +19,12 @@ const ASSET_COLUMNS =
   "id, workshop_id, category, asset_type, title, description, instructions, language, storage_path, file_name, mime_type, size_bytes, width, height, preview_path, text_content, visibility, published, sort_order";
 
 function publicClient() {
-  const url = process.env["SUPABASE_URL"]!;
-  const key = process.env["SUPABASE_PUBLISHABLE_KEY"]!;
+  // Fall back to the build-time public values so the page still loads on hosts
+  // that don't inject the server variables (e.g. a self-hosted copy of the site).
+  const url = process.env["SUPABASE_URL"] || (import.meta.env.VITE_SUPABASE_URL as string | undefined);
+  const key =
+    process.env["SUPABASE_PUBLISHABLE_KEY"] || (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined);
+  if (!url || !key) throw new Error("The workshop page could not be loaded. Please try again shortly.");
   return createClient<Database>(url, key, {
     auth: { storage: undefined, persistSession: false, autoRefreshToken: false },
     global: {
